@@ -6,7 +6,7 @@ const shapes = [
   {
     width: 655,
     height: 680,
-    path: "M100 200 L555 200 L545 250 L90 250 Z M110 350 L565 350 L555 400 L100 400 Z M80 150 L575 530 L555 550 L60 170 Z",
+    path: "M90 175 L555 175 L555 275 L90 275 Z M100 375 L565 375 L565 475 L100 475 Z M575 150 L80 530 L60 550 L555 170 Z",
   },
   {
     width: 719,
@@ -27,7 +27,7 @@ const StylizedImage = ({ shape = 0, className, ...props }) => {
     <div
       className={clsx(
         className,
-        "relative flex aspect-[719/680] w-full"
+        "relative flex aspect-[719/680] w-full grayscale"
       )}
     >
       <svg viewBox={`0 0 ${width} ${height}`} fill="none" className="h-full">
