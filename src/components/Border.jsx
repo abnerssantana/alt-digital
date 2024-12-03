@@ -14,7 +14,7 @@ const Border = ({
         "relative before:absolute after:absolute",
         invert
           ? "before:bg-white after:bg-white/10"
-          : "before:bg-[#2A3F2C] after:bg-[#2A3F2C]/10",
+          : "before:bg-[#688A61] after:bg-[#688A61]/10",
         position === "top" &&
           "before:left-0 before:top-0 before:h-px before:w-6 after:left-8 after:right-0 after:top-0 after:h-px",
         position === "left" &&
