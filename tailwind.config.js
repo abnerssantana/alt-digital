@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       borderRadius: {
-        "5xl": "2.5rem",
+        "4xl": "2.5rem",
       },
       fontFamily: {
         sans: ["Satoshi", ...defaultTheme.fontFamily.sans],
