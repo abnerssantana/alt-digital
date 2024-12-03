@@ -30,7 +30,7 @@ const PageIntro = ({ eyebrow, title, children, centered = false }) => {
           )}
         >
           {children}
-        </div>
+        </div> 
       </FadeIn>
     </Container>
   );
