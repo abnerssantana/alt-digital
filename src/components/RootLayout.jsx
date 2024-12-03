@@ -31,7 +31,7 @@ const Header = ({
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href={"/contact"} invert={invert}>
-            Contact us
+            Contate-nos
           </Button>
           <button
             ref={toggleRef}
