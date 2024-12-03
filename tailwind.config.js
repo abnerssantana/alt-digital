@@ -12,11 +12,13 @@ module.exports = {
         "4xl": "2.5rem",
       },
       fontFamily: {
-        sans: ["Satoshi", ...defaultTheme.fontFamily.sans],
-        display: [
-          ["Satoshi", ...defaultTheme.fontFamily.sans],
-          { fontVariationSettings: '"wdth" 125' },
-        ],
+        satoshi: ["Satoshi", "sans-serif"],
+      },
+      fontWeight: {
+        light: 300,
+        normal: 400,
+        medium: 500,
+        bold: 700,
       },
     },
   },
