@@ -25,7 +25,7 @@ export function GridListItem({ title, children, className, invert = false }) {
         "text-base",
         invert
           ? "text-neutral-300 before:bg-white after:bg-white/10"
-          : "text-neutral-600 before:bg-[#688A61] after:bg-neutral-100",
+          : "text-neutral-600 before:bg-[#283F2B] after:bg-neutral-100",
         className
       )}
     >
