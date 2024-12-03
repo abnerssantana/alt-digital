@@ -1,10 +1,33 @@
 @tailwind base;
 
 @font-face {
-  font-family: "Satoshi Sans";
-  font-weight: 200 900;
+  font-family: "Satoshi";
+  font-weight: 700;
   font-display: block;
   font-style: normal;
-  font-stretch: 75% 125%;
-  src: url("../fonts//Satoshi-Bold.woff");
+  src: url("../fonts/Satoshi-Bold.woff");
+}
+
+@font-face {
+  font-family: "Satoshi";
+  font-weight: 500;
+  font-display: block;
+  font-style: normal;
+  src: url("../fonts/Satoshi-Medium.woff");
+}
+
+@font-face {
+  font-family: "Satoshi";
+  font-weight: 400;
+  font-display: block;
+  font-style: normal;
+  src: url("../fonts/Satoshi-Regular.woff");
+}
+
+@font-face {
+  font-family: "Satoshi";
+  font-weight: 300;
+  font-display: block;
+  font-style: normal;
+  src: url("../fonts/Satoshi-Light.woff");
 }

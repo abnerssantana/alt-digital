@@ -9,12 +9,12 @@ module.exports = {
   theme: {
     extend: {
       borderRadius: {
-        "4xl": "2.5rem",
+        "5xl": "2.5rem",
       },
       fontFamily: {
-        sans: ["Satoshi Sans", ...defaultTheme.fontFamily.sans],
+        sans: ["Satoshi", ...defaultTheme.fontFamily.sans],
         display: [
-          ["Satoshi Sans", ...defaultTheme.fontFamily.sans],
+          ["Satoshi", ...defaultTheme.fontFamily.sans],
           { fontVariationSettings: '"wdth" 125' },
         ],
       },
