@@ -11,7 +11,7 @@ export default function Home() {
     <main className="text-black">
       <Container className="mt-24 sm:mt-32">
         <FadeIn className="max-w-5xl">
-          <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
+          <h1 className="font-display text-4xl font-bold tracking-tight text-neutral-950 [text-wrap:balance] sm:text-6xl">
             A (ALT)ERNATIVA PARA QUEM PENSA DIFERENTE.
           </h1>
           <p className="mt-6 text-xl text-neutral-600">

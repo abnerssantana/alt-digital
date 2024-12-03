@@ -10,13 +10,13 @@ const Services = () => {
   return (
     <>
       <SectionIntro
-        eyebrow="Services"
-        title="We help you identify, explore and respond to new opportunities."
+        eyebrow="Nossos Serviços"
+        title="Transformamos sua presença digital com estratégia e criatividade"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          As long as those opportunities involve giving us money to re-purpose
-          old projects — we can come up with an endless number of those.
+          Desenvolvemos soluções personalizadas para fortalecer sua marca no ambiente digital,
+          conectando você ao seu público de forma autêntica e impactante.
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -30,26 +30,26 @@ const Services = () => {
               />
             </FadeIn>
           </div>
-          {/* List item */}
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
-            <ListItem title="Web development">
-              We specialise in crafting beautiful, high quality marketing pages.
-              The rest of the website will be a shell that uses lorem ipsum
-              everywhere.
+            <ListItem title="Gestão de Redes Sociais">
+              Criamos e gerenciamos conteúdo estratégico para Instagram, Facebook e LinkedIn,
+              desenvolvendo sua presença digital com posts engajadores, stories dinâmicos e 
+              campanhas direcionadas que conectam sua marca ao público-alvo.
             </ListItem>
-            <ListItem title="Application development">
-              We have a team of skilled developers who are experts in the latest
-              app frameworks, like Angular 1 and Google Web Toolkit.
+            <ListItem title="Produção Audiovisual">
+              Produzimos conteúdo audiovisual de alta qualidade para suas redes sociais e campanhas.
+              Desde vídeos institucionais e reels até documentação de eventos e podcasts,
+              contamos histórias que fortalecem sua marca.
             </ListItem>
-            <ListItem title="E-commerce">
-              We are at the forefront of modern e-commerce development. Which
-              mainly means adding your logo to the Shopify store template we’ve
-              used for the past six years.
+            <ListItem title="Branding & Identidade Visual">
+              Desenvolvemos identidades visuais marcantes e estratégias de branding que
+              traduzem a essência da sua marca. Criamos logos, guias de estilo e todo o
+              material visual necessário para fortalecer seu posicionamento.
             </ListItem>
-            <ListItem title="Custom content management">
-              At Studio we understand the importance of having a robust and
-              customised CMS. That’s why we run all of our client projects out
-              of a single, enormous Joomla instance.
+            <ListItem title="Marketing Digital & Performance">
+              Implementamos estratégias completas de marketing digital, incluindo SEO,
+              tráfego pago, email marketing e análise de dados. Focamos em resultados
+              mensuráveis e crescimento sustentável da sua presença online.
             </ListItem>
           </List>
         </div>

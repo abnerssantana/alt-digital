@@ -9,7 +9,7 @@ const ContactSection = () => {
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn className="-mx-6 rounded-4xl bg-[#688B61] px-6 py-20 sm:mx-0 sm:py-32 md:px-12">
         <div className="max-w-5xl mx-auto">
-          <h2 className="font-display text-3xl font-medium text-white [text-wrap:balance] sm:text-4xl">
+          <h2 className="font-display text-3xl font-bold text-white [text-wrap:balance] sm:text-4xl">
             Vamos conversar?
           </h2>
           <h3 className="font-display text-base font-semibold text-white">
