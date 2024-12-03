@@ -1,8 +1,8 @@
-# Abdullah Agency - Next.js, Tailwind CSS & Framer Motion
+# Alt Digital ≠ - Next.js, Tailwind CSS & Framer Motion
 
-![Abdullah Agency](/public/agency.PNG)
+![Alt Digital ≠](/public/agency.PNG)
 
-Abdullah Agency is a stunning multi-page agency website template developed using Next.js, Tailwind CSS, and Framer Motion. Designed and built by the talented Tailwind CSS team, this template offers a sleek and minimalist appearance while boasting engaging interactive elements and captivating animations powered by Framer Motion.
+Alt Digital ≠ is a stunning multi-page agency website template developed using Next.js, Tailwind CSS, and Framer Motion. Designed and built by the talented Tailwind CSS team, this template offers a sleek and minimalist appearance while boasting engaging interactive elements and captivating animations powered by Framer Motion.
 
 ## Features
 
@@ -15,7 +15,7 @@ Abdullah Agency is a stunning multi-page agency website template developed using
 
 ## Getting Started
 
-To run the Abdullah Agency website locally, follow these steps:
+To run the Alt Digital ≠ website locally, follow these steps:
 
 1. **Clone the repository:**
 
