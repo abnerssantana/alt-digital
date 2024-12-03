@@ -14,7 +14,7 @@ const Services = () => {
         title="Transformamos sua presença digital com estratégia e criatividade"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
-        <p className="text-[#8B5E3C]"> {/* Using terracotta color for supporting text */}
+        <p>
           Desenvolvemos soluções personalizadas para fortalecer sua marca no ambiente digital,
           conectando você ao seu público de forma autêntica e impactante.
         </p>
@@ -31,45 +31,25 @@ const Services = () => {
             </FadeIn>
           </div>
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
-            <ListItem 
-              title="Gestão de Redes Sociais"
-              className="group transition-all duration-300 hover:bg-[#1B2921] rounded-lg p-4" // Darkest green on hover
-            >
-              <div className="text-[#4A5D4C]"> {/* Medium green for text */}
-                Criamos e gerenciamos conteúdo estratégico para Instagram, Facebook e LinkedIn,
-                desenvolvendo sua presença digital com posts engajadores, stories dinâmicos e 
-                campanhas direcionadas que conectam sua marca ao público-alvo.
-              </div>
+            <ListItem title="Gestão de Redes Sociais">
+              Criamos e gerenciamos conteúdo estratégico para Instagram, Facebook e LinkedIn,
+              desenvolvendo sua presença digital com posts engajadores, stories dinâmicos e 
+              campanhas direcionadas que conectam sua marca ao público-alvo.
             </ListItem>
-            <ListItem 
-              title="Produção Audiovisual"
-              className="group transition-all duration-300 hover:bg-[#1B2921] rounded-lg p-4"
-            >
-              <div className="text-[#4A5D4C]">
-                Produzimos conteúdo audiovisual de alta qualidade para suas redes sociais e campanhas.
-                Desde vídeos institucionais e reels até documentação de eventos e podcasts,
-                contamos histórias que fortalecem sua marca.
-              </div>
+            <ListItem title="Produção Audiovisual">
+              Produzimos conteúdo audiovisual de alta qualidade para suas redes sociais e campanhas.
+              Desde vídeos institucionais e reels até documentação de eventos e podcasts,
+              contamos histórias que fortalecem sua marca.
             </ListItem>
-            <ListItem 
-              title="Branding & Identidade Visual"
-              className="group transition-all duration-300 hover:bg-[#1B2921] rounded-lg p-4"
-            >
-              <div className="text-[#4A5D4C]">
-                Desenvolvemos identidades visuais marcantes e estratégias de branding que
-                traduzem a essência da sua marca. Criamos logos, guias de estilo e todo o
-                material visual necessário para fortalecer seu posicionamento.
-              </div>
+            <ListItem title="Branding & Identidade Visual">
+              Desenvolvemos identidades visuais marcantes e estratégias de branding que
+              traduzem a essência da sua marca. Criamos logos, guias de estilo e todo o
+              material visual necessário para fortalecer seu posicionamento.
             </ListItem>
-            <ListItem 
-              title="Marketing Digital & Performance"
-              className="group transition-all duration-300 hover:bg-[#1B2921] rounded-lg p-4"
-            >
-              <div className="text-[#4A5D4C]">
-                Implementamos estratégias completas de marketing digital, incluindo SEO,
-                tráfego pago, email marketing e análise de dados. Focamos em resultados
-                mensuráveis e crescimento sustentável da sua presença online.
-              </div>
+            <ListItem title="Marketing Digital & Performance">
+              Implementamos estratégias completas de marketing digital, incluindo SEO,
+              tráfego pago, email marketing e análise de dados. Focamos em resultados
+              mensuráveis e crescimento sustentável da sua presença online.
             </ListItem>
           </List>
         </div>
