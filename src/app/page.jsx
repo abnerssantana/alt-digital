@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className="text-black">
       <Container className="mt-24 sm:mt-32">
-        <FadeIn className="max-w-4xl">
+        <FadeIn className="max-w-5xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
             A (ALT)ERNATIVA PARA QUEM PENSA DIFERENTE.
           </h1>

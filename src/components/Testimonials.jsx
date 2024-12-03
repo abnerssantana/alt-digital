@@ -19,7 +19,7 @@ const Testimonials = ({ children, client, className }) => {
       />
       <Container>
         <FadeIn>
-          <figure className="mx-auto max-w-4xl">
+          <figure className="mx-auto max-w-5xl">
             <blockquote className="relative font-display text-3xl font-medium tracking-tight text-neutral-950 sm:text-4xl">
               <p className="before:content-['“'] after:content-['”'] sm:before:absolute sm:before:right-full">
                 {children}
