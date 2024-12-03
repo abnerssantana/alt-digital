@@ -1,14 +1,10 @@
+// TypewriterText.jsx
+"use client"
+
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import Clients from "@/components/Clients";
-import ContactSection from "@/components/ContactSection";
-import Container from "@/components/Container";
-import FadeIn from "@/components/FadeIn";
-import Services from "@/components/Services";
-import Testimonials from "@/components/Testimonials";
-import logoPhobiaDark from "@/images/clients/phobia/logo-dark.svg";
 
-const TypewriterText = ({ text, className }) => {
+export const TypewriterText = ({ text, className }) => {
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -17,7 +13,7 @@ const TypewriterText = ({ text, className }) => {
       const timeout = setTimeout(() => {
         setDisplayedText(prev => prev + text[currentIndex]);
         setCurrentIndex(prev => prev + 1);
-      }, 50); // Ajuste esta velocidade conforme necessário
+      }, 50);
 
       return () => clearTimeout(timeout);
     }
@@ -41,6 +37,16 @@ const TypewriterText = ({ text, className }) => {
     </motion.span>
   );
 };
+
+// page.jsx
+import Clients from "@/components/Clients";
+import ContactSection from "@/components/ContactSection";
+import Container from "@/components/Container";
+import FadeIn from "@/components/FadeIn";
+import Services from "@/components/Services";
+import Testimonials from "@/components/Testimonials";
+import logoPhobiaDark from "@/images/clients/phobia/logo-dark.svg";
+import { TypewriterText } from "./TypewriterText";
 
 export default function Home() {
   return (
