@@ -1,44 +1,3 @@
-// TypewriterText.jsx
-"use client"
-
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-
-export const TypewriterText = ({ text, className }) => {
-  const [displayedText, setDisplayedText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    if (currentIndex < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, 50);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, text]);
-
-  return (
-    <motion.span
-      className={className}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      {displayedText}
-      <motion.span
-        animate={{ opacity: [0, 1] }}
-        transition={{ repeat: Infinity, duration: 0.7 }}
-        className="inline-block ml-1"
-      >
-        |
-      </motion.span>
-    </motion.span>
-  );
-};
-
-// page.jsx
 import Clients from "@/components/Clients";
 import ContactSection from "@/components/ContactSection";
 import Container from "@/components/Container";
@@ -46,7 +5,6 @@ import FadeIn from "@/components/FadeIn";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import logoPhobiaDark from "@/images/clients/phobia/logo-dark.svg";
-import { TypewriterText } from "./TypewriterText";
 
 export default function Home() {
   return (
@@ -54,14 +12,13 @@ export default function Home() {
       <Container className="mt-24 sm:mt-32">
         <FadeIn className="max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
-            <TypewriterText 
-              text="A (ALT)ERNATIVA PARA QUEM PENSA DIFERENTE."
-            />
+            A (ALT)ERNATIVA PARA QUEM PENSA DIFERENTE.
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
             Nosso propósito é ser a alternativa fora da curva no mercado de conteúdo e audiovisual. 
             Na alt ≠, rompemos com o comum, trazendo uma abordagem disruptiva e criativa que desafia 
-            o padrão e cria experiências que realmente marcam.
+            o padrão e cria experiências que realmente marcam. Com soluções inovadoras, ajudamos 
+            marcas a se destacarem e se conectarem com o que há de mais atual no mundo digital.
           </p>
         </FadeIn>
       </Container>
@@ -70,9 +27,7 @@ export default function Home() {
         <Container>
           <FadeIn className="max-w-2xl">
             <h2 className="font-display text-3xl font-medium tracking-tight text-neutral-950 sm:text-4xl">
-              <TypewriterText 
-                text="Autêntico e Direto"
-              />
+              Autêntico e Direto
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
               Não tem medo de ser direto e expressar sua opinião com confiança. 
