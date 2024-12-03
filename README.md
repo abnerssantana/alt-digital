@@ -20,5 +20,5 @@ To run the Alt Digital ≠ website locally, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/abdullah-agency.git
+   git clone https://github.com/your-username/Alt Digital-agency.git
    ```

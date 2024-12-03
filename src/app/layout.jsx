@@ -3,16 +3,16 @@ import "./globals.css";
 
 export const metadata = {
   title: {
-    template: "Abdullah",
-    default: "Abdullah",
+    template: "Alt Digital",
+    default: "Alt Digital",
   },
 };
 
 export default function Layout({ children }) {
   return (
     <html
-      lang="en"
-      className="h-full bg-neutral-950 text-base antialiased text-neutral-100"
+      lang="pt-BR"
+      className="h-full bg-[#2A3F2C] text-base antialiased text-[#182623]"
     >
       <body className="flex min-h-full flex-col">
         <RootLayout>{children}</RootLayout>
