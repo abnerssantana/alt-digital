@@ -22,7 +22,7 @@ export default function Home() {
           </p>
         </FadeIn>
       </Container>
-      <Clients />
+      <Services />
       <div className="mt-24 sm:mt-32 lg:mt-40">
         <Container>
           <FadeIn className="max-w-2xl">
@@ -45,7 +45,7 @@ export default function Home() {
         que chamam a atenção. O tom é inovador e reflete a capacidade da agência de 
         pensar fora da caixa.
       </Testimonials>
-      <Services />
+      <Clients />
       <ContactSection />
     </main>
   );
