@@ -19,8 +19,13 @@ const ArrowIcon = (props) => {
 };
 
 const NewsletterForm = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your form submission logic here
+  };
+
   return (
-    <form className="max-w-sm">
+    <form className="max-w-sm" onSubmit={handleSubmit}>
       <h2 className="font-display text-sm font-semibold tracking-wider text-neutral-950">
         Sign up for our newsletter
       </h2>
@@ -61,8 +66,8 @@ const Footer = () => {
           </div>
         </div>
         <div className="mb-20 mt-24 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12">
-          <Link href={"/"} aria-label="Home">
-            <Logo className="h-8" fillOnHover>
+          <Link href="/" aria-label="Home">
+            <Logo className="h-8" data-fill-on-hover="true">
               Alt Digital ≠
             </Logo>
           </Link>
