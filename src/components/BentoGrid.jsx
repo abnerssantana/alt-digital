@@ -34,7 +34,7 @@ const BentoGrid = () => {
       src: '/1.mp4',
       title: 'Video',
       description: 'Produções audiovisuais',
-      className: 'col-span-2 row-span-4',
+      className: 'col-span-2 row-span-2',
       aspectRatio: 'portrait' // 9:16
     },
     {
@@ -48,12 +48,21 @@ const BentoGrid = () => {
     },
     {
       type: 'image',
+      src: '8.png',
+      alt: 'Analytics',
+      title: 'Analytics',
+      description: 'Análise de dados',
+      className: 'col-span-1 row-span-1',
+      aspectRatio: 'square' // 1:1
+    },
+    {
+      type: 'image',
       src: '4.jpg',
       alt: 'Social media',
       title: 'Social',
       description: 'Engajamento nas redes',
       className: 'col-span-1 row-span-2',
-      aspectRatio: 'portrait' // 9:16
+      aspectRatio: 'instagram' // 4:5
     },
     {
       type: 'image',
@@ -72,15 +81,6 @@ const BentoGrid = () => {
       description: 'Otimização web',
       className: 'col-span-1 row-span-2',
       aspectRatio: 'instagram' // 4:5
-    },
-    {
-      type: 'image',
-      src: '8.png',
-      alt: 'Analytics',
-      title: 'Analytics',
-      description: 'Análise de dados',
-      className: 'col-span-1 row-span-1',
-      aspectRatio: 'square' // 1:1
     }
   ];
 
