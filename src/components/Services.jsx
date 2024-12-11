@@ -12,7 +12,7 @@ const Services = () => {
       <SectionIntro
         eyebrow="Nossos Serviços"
         title="Transformamos sua presença digital com estratégia e criatividade"
-        className="mt-24 sm:mt-32 lg:mt-40"
+        className="mt-14 sm:mt-24 lg:mt-20"
       >
         <p>
           Desenvolvemos soluções personalizadas para fortalecer sua marca no ambiente digital,
