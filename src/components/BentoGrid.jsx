@@ -34,7 +34,7 @@ const BentoGrid = () => {
       src: '/1.mp4',
       title: 'Video',
       description: 'Produções audiovisuais',
-      className: 'col-span-2 row-span-2',
+      className: 'col-span-1 row-span-2',
       aspectRatio: 'portrait' // 9:16
     },
     {
