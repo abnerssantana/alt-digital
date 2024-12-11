@@ -8,7 +8,8 @@ const BentoGrid = () => {
       alt: 'Digital marketing',
       title: 'Marketing',
       description: 'Estratégias que conectam',
-      className: 'col-span-2 row-span-1'
+      className: 'col-span-2 row-span-1',
+      aspectRatio: 'landscape' // 16:9
     },
     {
       type: 'image',
@@ -16,7 +17,8 @@ const BentoGrid = () => {
       alt: 'Content creation',
       title: 'Content',
       description: 'Conteúdo que engaja',
-      className: 'col-span-1 row-span-1'
+      className: 'col-span-1 row-span-2',
+      aspectRatio: 'portrait' // 9:16
     },
     {
       type: 'image',
@@ -24,14 +26,16 @@ const BentoGrid = () => {
       alt: 'Social media',
       title: 'Social',
       description: 'Engajamento nas redes',
-      className: 'col-span-1 row-span-1'
+      className: 'col-span-1 row-span-1',
+      aspectRatio: 'square' // 1:1
     },
     {
       type: 'video',
       src: '/1.mp4',
       title: 'Video',
       description: 'Produções audiovisuais',
-      className: 'col-span-2 row-span-4 h-auto sm:h-[600px] lg:h-[895px]'
+      className: 'col-span-2 row-span-4',
+      aspectRatio: 'portrait' // 9:16
     },
     {
       type: 'image',
@@ -39,7 +43,8 @@ const BentoGrid = () => {
       alt: 'SEO optimization',
       title: 'SEO',
       description: 'Otimização web',
-      className: 'col-span-1 row-span-1'
+      className: 'col-span-1 row-span-2',
+      aspectRatio: 'instagram' // 4:5
     },
     {
       type: 'image',
@@ -47,7 +52,8 @@ const BentoGrid = () => {
       alt: 'Social media',
       title: 'Social',
       description: 'Engajamento nas redes',
-      className: 'col-span-1 row-span-1'
+      className: 'col-span-1 row-span-2',
+      aspectRatio: 'portrait' // 9:16
     },
     {
       type: 'image',
@@ -55,7 +61,8 @@ const BentoGrid = () => {
       alt: 'Content creation',
       title: 'Content',
       description: 'Conteúdo que engaja',
-      className: 'col-span-2 row-span-1'
+      className: 'col-span-2 row-span-1',
+      aspectRatio: 'landscape' // 16:9
     },
     {
       type: 'image',
@@ -63,7 +70,8 @@ const BentoGrid = () => {
       alt: 'SEO optimization',
       title: 'SEO',
       description: 'Otimização web',
-      className: 'col-span-1 row-span-1'
+      className: 'col-span-1 row-span-2',
+      aspectRatio: 'instagram' // 4:5
     },
     {
       type: 'image',
@@ -71,20 +79,36 @@ const BentoGrid = () => {
       alt: 'Analytics',
       title: 'Analytics',
       description: 'Análise de dados',
-      className: 'col-span-1 row-span-1'
+      className: 'col-span-1 row-span-1',
+      aspectRatio: 'square' // 1:1
     }
   ];
 
+  const getAspectRatioClass = (ratio) => {
+    switch (ratio) {
+      case 'portrait': // 9:16
+        return 'aspect-[9/16]';
+      case 'instagram': // 4:5
+        return 'aspect-[4/5]';
+      case 'square': // 1:1
+        return 'aspect-square';
+      case 'landscape': // 16:9
+        return 'aspect-video';
+      default:
+        return 'aspect-video';
+    }
+  };
+
   return (
     <div className="w-full max-w-[1400px] mx-auto p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-auto">
         {items.map((item, index) => (
           <div
             key={index}
             className={`group relative overflow-hidden rounded-lg transition-all duration-300 
               hover:shadow-lg hover:scale-[1.02] 
               ${item.className} bg-neutral-100 cursor-pointer
-              ${item.type !== 'video' ? 'h-48 sm:h-64 lg:h-72' : ''}`}
+              ${getAspectRatioClass(item.aspectRatio)}`}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent 
               opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
