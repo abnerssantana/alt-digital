@@ -12,7 +12,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="mt-8 relative min-h-screen overflow-hidden">
+    <div className="mt-8 relative min-h-min sm:min-h-screen overflow-hidden">
       {/* Background Image with fade-in */}
       <div 
         className={`absolute inset-0 bg-[url('/background.png')] bg-cover bg-center bg-no-repeat 
@@ -43,18 +43,17 @@ const Hero = () => {
       <Container className="relative pt-32 sm:pt-40 pb-32">
         <FadeIn className="max-w-7xl mx-auto text-left">
           <h1 
-            className={`font-display text-5xl font-bold tracking-tight text-white [text-wrap:balance] sm:text-6xl
+            className={`sm:mt-10 font-display text-3xl font-bold tracking-tight text-white [text-wrap:balance] sm:text-7xl
               transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}
           >
             A (ALT)ERNATIVA PARA QUEM PENSA DIFERENTE
           </h1>
           
           <p 
-            className={`mt-6 text-xl text-neutral-200
+            className={`mt-6 text-lg text-neutral-200 sm:text-2xl
               transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}
           >
-            Nosso propósito é ser a alternativa fora da curva no mercado de conteúdo e audiovisual. 
-            Na alt ≠, rompemos com o comum, trazendo uma abordagem disruptiva e criativa que desafia 
+            Rompemos com o comum, trazendo uma abordagem disruptiva e criativa que desafia 
             o padrão e cria experiências que realmente marcam. Com soluções inovadoras, ajudamos 
             marcas a se destacarem e se conectarem com o que há de mais atual no mundo digital.
           </p>
