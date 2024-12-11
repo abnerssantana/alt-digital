@@ -24,7 +24,7 @@ export default function Home() {
         </FadeIn>
       </Container>
       <Services />
-      <BentoGrid />
+      <BentoGrid className="mt-24 sm:mt-32"/>
       <div className="mt-24 sm:mt-32 lg:mt-40">
         <Container>
           <FadeIn className="max-w-2xl">
