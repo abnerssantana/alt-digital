@@ -12,6 +12,14 @@ const BentoGrid = () => {
       aspectRatio: 'landscape' // 16:9
     },
     {
+      type: 'video',
+      src: '/1.mp4',
+      title: 'Video',
+      description: 'Produções audiovisuais',
+      className: 'col-span-2 row-span-3',
+      aspectRatio: 'portrait' // 9:16
+    },
+    {
       type: 'image',
       src: '/logo.png',
       alt: 'Content creation',
@@ -28,14 +36,6 @@ const BentoGrid = () => {
       description: 'Engajamento nas redes',
       className: 'col-span-1 row-span-1',
       aspectRatio: 'square' // 1:1
-    },
-    {
-      type: 'video',
-      src: '/1.mp4',
-      title: 'Video',
-      description: 'Produções audiovisuais',
-      className: 'col-span-1 row-span-2',
-      aspectRatio: 'portrait' // 9:16
     },
     {
       type: 'image',
@@ -57,21 +57,21 @@ const BentoGrid = () => {
     },
     {
       type: 'image',
-      src: '4.jpg',
-      alt: 'Social media',
-      title: 'Social',
-      description: 'Engajamento nas redes',
-      className: 'col-span-1 row-span-2',
-      aspectRatio: 'instagram' // 4:5
-    },
-    {
-      type: 'image',
       src: '6.png',
       alt: 'Content creation',
       title: 'Content',
       description: 'Conteúdo que engaja',
       className: 'col-span-2 row-span-1',
       aspectRatio: 'landscape' // 16:9
+    },
+    {
+      type: 'image',
+      src: '4.jpg',
+      alt: 'Social media',
+      title: 'Social',
+      description: 'Engajamento nas redes',
+      className: 'col-span-1 row-span-2',
+      aspectRatio: 'instagram' // 4:5
     },
     {
       type: 'image',
@@ -101,7 +101,7 @@ const BentoGrid = () => {
 
   return (
     <div className="w-full max-w-[1400px] mx-auto p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-fr">
         {items.map((item, index) => (
           <div
             key={index}
