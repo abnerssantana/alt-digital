@@ -5,6 +5,7 @@ import FadeIn from "@/components/FadeIn";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import logoPhobiaDark from "@/images/clients/fet.png";
+import BentoGrid from '@/components/BentoGrid';
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         </FadeIn>
       </Container>
       <Services />
+      <BentoGrid />
       <div className="mt-24 sm:mt-32 lg:mt-40">
         <Container>
           <FadeIn className="max-w-2xl">
