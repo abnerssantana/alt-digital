@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card } from '@/components/ui/card';
 
 const BentoGrid = () => {
   const items = [
@@ -40,11 +39,11 @@ const BentoGrid = () => {
     <div className="w-full max-w-7xl mx-auto p-4">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-auto">
         {items.map((item, index) => (
-          <Card 
+          <div 
             key={index}
-            className={`group relative overflow-hidden rounded-xl transition-all hover:shadow-lg ${item.className}`}
+            className={`group relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg ${item.className} bg-white`}
           >
-            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
+            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
             
             {item.type === 'image' ? (
               <img
@@ -65,11 +64,11 @@ const BentoGrid = () => {
               </video>
             )}
             
-            <div className="absolute inset-0 p-4 text-white z-20 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end">
+            <div className="absolute inset-0 p-4 text-white z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end">
               <h3 className="text-xl font-bold mb-2">{item.title}</h3>
               <p className="text-sm text-white/90">{item.description}</p>
             </div>
-          </Card>
+          </div>
         ))}
       </div>
     </div>
