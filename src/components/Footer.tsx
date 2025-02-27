@@ -160,7 +160,13 @@ export function Footer() {
   );
 }
 
-function SocialIcon({ href, children, ...props }) {
+interface SocialIconProps {
+  href: string;
+  children: React.ReactNode;
+  [key: string]: any;
+}
+
+function SocialIcon({ href, children, ...props }: SocialIconProps) {
   return (
     <a
       href={href}
