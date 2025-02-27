@@ -4,22 +4,22 @@ import { twMerge } from "tailwind-merge";
 /**
  * Une classes do Tailwind resolvendo conflitos
  */
-export function cn(...inputs) {
+export function cn(...inputs: string[]) {
   return twMerge(clsx(inputs));
 }
 
 /**
  * Formata uma data para o formato brasileiro DD/MM/YYYY
  */
-export function formatDate(date) {
-  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+export function formatDate(date: string | number | Date) {
+  const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
   return new Date(date).toLocaleDateString('pt-BR', options);
 }
 
 /**
  * Trunca um texto para o número máximo de palavras
  */
-export function truncateText(text, maxWords = 25) {
+export function truncateText(text: string, maxWords: number = 25) {
   const words = text.split(' ');
   if (words.length <= maxWords) return text;
   return words.slice(0, maxWords).join(' ') + '...';
@@ -28,7 +28,7 @@ export function truncateText(text, maxWords = 25) {
 /**
  * Gera um slug a partir de um texto
  */
-export function slugify(text) {
+export function slugify(text: string) {
   return text
     .toString()
     .normalize('NFD')
@@ -43,7 +43,7 @@ export function slugify(text) {
 /**
  * Obtém as iniciais de um nome
  */
-export function getInitials(name) {
+export function getInitials(name: string) {
   const names = name.split(' ');
   
   if (names.length === 1) return names[0].charAt(0);
