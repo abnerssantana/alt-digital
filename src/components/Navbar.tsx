@@ -254,8 +254,14 @@ function LogoAlt() {
   );
 }
 
+// Tipos para o componente SocialIcon
+interface SocialIconProps {
+  href: string;
+  icon: React.ReactNode;
+}
+
 // Social media icon component
-function SocialIcon({ href, icon }) {
+function SocialIcon({ href, icon }: SocialIconProps) {
   return (
     <a
       href={href}
