@@ -10,7 +10,7 @@ export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: e.clientX,
         y: e.clientY,
@@ -52,7 +52,7 @@ export function Hero() {
 
       {/* Linhas de grid para efeito visual */}
       <div className="absolute inset-0 z-0 opacity-10">
-        <div className="h-full w-full bg-[linear-gradient(to_right,#6a994e15_1px,transparent_1px),linear-gradient(to_bottom,#6a994e15_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        <div className="h-full w-full bg-[linear-gradient(to_right,#7BAC80_1px,transparent_1px),linear-gradient(to_bottom,#7BAC80_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
       </div>
 
       {/* Conteúdo */}

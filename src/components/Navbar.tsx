@@ -97,7 +97,7 @@ export function Navbar() {
               <span className="sr-only">Abrir menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="bg-background border-primary/20">
+          <SheetContent side="right" className="bg-background border-primary-400/20">
             <div className="flex flex-col h-full">
               <div className="flex justify-between items-center mb-8">
                 <LogoAlt />
@@ -129,7 +129,7 @@ export function Navbar() {
                 </ul>
               </nav>
 
-              <div className="mt-auto pt-8 border-t border-primary/10">
+              <div className="mt-auto pt-8 border-t border-primary-400/10">
                 <div className="flex space-x-4 mb-6">
                   <SocialIcon href={siteConfig.links.instagram} icon={<InstagramIcon size={20} />} />
                   <SocialIcon href={siteConfig.links.linkedin} icon={<LinkedinIcon size={20} />} />
@@ -164,7 +164,7 @@ function SocialIcon({ href, icon }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary/20 transition-colors"
+      className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary-400/20 transition-colors"
     >
       {icon}
     </a>

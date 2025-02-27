@@ -10,17 +10,17 @@ import {
   Megaphone, 
   Video, 
   Palette, 
-  Instagram, 
   Paintbrush, 
   Code 
 } from "lucide-react";
+import { SiInstagram } from "react-icons/si";
 
 // Map de ícones para os serviços
-const iconMap = {
+const iconMap: { [key: string]: React.ComponentType<{ size: number; className: string }> } = {
   Megaphone: Megaphone,
   Video: Video,
   Palette: Palette,
-  Instagram: Instagram,
+  Instagram: SiInstagram,
   Paintbrush: Paintbrush,
   Code: Code
 };

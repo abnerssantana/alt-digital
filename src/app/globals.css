@@ -133,16 +133,16 @@
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 95%;
  
-    --primary: 130 40% 35%;
+    --primary: 130 40% 20%;  /* Verde escuro - #283F2B */
     --primary-foreground: 0 0% 98%;
  
-    --secondary: 30 45% 42%;
+    --secondary: 30 45% 42%; /* Terracota médio - #9D603B */
     --secondary-foreground: 0 0% 98%;
  
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
  
-    --accent: 80 40% 92%;
+    --accent: 80 40% 92%;    /* Creme/off-white - #F0F4E8 */
     --accent-foreground: 125 35% 15%;
  
     --destructive: 0 62.8% 30.6%;

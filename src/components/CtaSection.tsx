@@ -1,93 +1,175 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import { siteConfig } from "@/lib/site-config";
+import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Instagram, Linkedin, Youtube, Mail, MapPin, Phone } from "lucide-react";
 
-export function CTASection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+const footerLinks = [
+  {
+    title: "Empresa",
+    links: [
+      { name: "Sobre nós", href: "/sobre" },
+      { name: "Missão e Visão", href: "/sobre#missao-visao" },
+      { name: "Equipe", href: "/sobre#equipe" },
+      { name: "Trabalhe conosco", href: "/carreiras" }
+    ]
+  },
+  {
+    title: "Serviços",
+    links: [
+      { name: "Marketing Digital", href: "/servicos/marketing-digital" },
+      { name: "Vídeo & Foto", href: "/servicos/video-foto" },
+      { name: "Branding", href: "/servicos/branding" },
+      { name: "Social Media", href: "/servicos/social-media" },
+      { name: "Design Gráfico", href: "/servicos/design-grafico" },
+      { name: "Web Development", href: "/servicos/web-development" }
+    ]
+  },
+  {
+    title: "Recursos",
+    links: [
+      { name: "Blog", href: "/blog" },
+      { name: "E-books", href: "/recursos/ebooks" },
+      { name: "Casos de sucesso", href: "/casos" },
+      { name: "FAQ", href: "/faq" }
+    ]
+  }
+];
 
+export function Footer() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="container mx-auto relative z-10">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-3xl mx-auto"
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Pronto para ser <span className="text-primary-400">diferente</span>?
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-            Vamos criar algo extraordinário juntos. Entre em contato e descubra como podemos 
-            transformar sua presença digital.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="group bg-primary hover:bg-primary-600" asChild>
-              <Link href="/contato" className="flex items-center">
-                Inicie seu projeto
-                <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-primary text-primary hover:bg-primary/10"
-            >
-              <Link href="https://wa.me/5517900000000" target="_blank" rel="noopener noreferrer">
-                Fale pelo WhatsApp
-              </Link>
-            </Button>
+    <footer className="bg-muted/30 border-t border-muted pt-16 pb-8">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
+          {/* Coluna do logo e info de contato */}
+          <div className="lg:col-span-2">
+            <Link href="/" className="inline-block mb-6">
+              <div className="flex items-center font-bold text-2xl">
+                <span>alt</span>
+                <span className="text-primary-400">≠</span>
+              </div>
+            </Link>
+            <p className="text-muted-foreground max-w-xs mb-6">
+              A (ALT)ERNATIVA PARA QUEM PENSA DIFERENTE. Agência digital especializada em soluções criativas e inovadoras.
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-start">
+                <MapPin size={18} className="mr-2 mt-1 text-primary-400" />
+                <span className="text-muted-foreground text-sm">
+                  {siteConfig.contact.address}
+                </span>
+              </div>
+              <div className="flex items-center">
+                <Phone size={18} className="mr-2 text-primary-400" />
+                <span className="text-muted-foreground text-sm">
+                  {siteConfig.contact.phone}
+                </span>
+              </div>
+              <div className="flex items-center">
+                <Mail size={18} className="mr-2 text-primary-400" />
+                <span className="text-muted-foreground text-sm">
+                  {siteConfig.contact.email}
+                </span>
+              </div>
+            </div>
           </div>
-        </motion.div>
-      </div>
-      
-      {/* Background decorativo */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-6xl">
-          <div className="h-full w-full bg-[radial-gradient(circle_at_center,#6a994e15_0,transparent_60%)]"></div>
+
+          {/* Colunas de links */}
+          {footerLinks.map((column) => (
+            <div key={column.title}>
+              <h3 className="font-semibold mb-4">{column.title}</h3>
+              <ul className="space-y-3">
+                {column.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-muted-foreground hover:text-primary-400 transition-colors text-sm"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Newsletter */}
+        <div className="bg-primary-800/50 backdrop-blur-sm p-8 rounded-2xl mb-16">
+          <div className="text-center max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold mb-3">Vamos criar algo incrível juntos</h3>
+            <p className="text-muted-foreground mb-6">
+              Entre em contato para discutir seu projeto ou assine nossa newsletter para receber novidades e inspiração.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                className="bg-primary-400 hover:bg-primary-500 text-white"
+                asChild
+              >
+                <Link href="/contato" className="flex items-center">
+                  Fale Conosco
+                  <ArrowRight size={16} className="ml-2" />
+                </Link>
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-primary-400 text-primary-400 hover:bg-primary-400/10"
+                asChild
+              >
+                <Link href="/newsletter">
+                  Assinar Newsletter
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <Separator className="bg-muted/20 mb-8" />
+
+        {/* Footer bottom */}
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex items-center space-x-4 mb-4 md:mb-0">
+            <SocialIcon href={siteConfig.links.instagram} aria-label="Instagram">
+              <Instagram size={18} />
+            </SocialIcon>
+            <SocialIcon href={siteConfig.links.linkedin} aria-label="LinkedIn">
+              <Linkedin size={18} />
+            </SocialIcon>
+            <SocialIcon href={siteConfig.links.youtube} aria-label="YouTube">
+              <Youtube size={18} />
+            </SocialIcon>
+          </div>
           
-          {/* Símbolos ≠ flutuantes */}
-          <motion.div 
-            className="absolute top-1/4 left-1/4 text-6xl font-bold text-primary-900/10"
-            animate={{ 
-              y: [0, -20, 0],
-              rotate: [0, 10, 0]
-            }}
-            transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-          >
-            ≠
-          </motion.div>
+          <div className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} Alt Digital. Todos os direitos reservados.
+          </div>
           
-          <motion.div 
-            className="absolute bottom-1/4 right-1/4 text-4xl font-bold text-primary-900/10"
-            animate={{ 
-              y: [0, 15, 0],
-              rotate: [0, -5, 0]
-            }}
-            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
-          >
-            ≠
-          </motion.div>
-          
-          <motion.div 
-            className="absolute top-2/3 left-1/3 text-5xl font-bold text-secondary-800/10"
-            animate={{ 
-              y: [0, 10, 0],
-              rotate: [0, 15, 0]
-            }}
-            transition={{ repeat: Infinity, duration: 10, ease: "easeInOut", delay: 2 }}
-          >
-            ≠
-          </motion.div>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <Link href="/termos" className="text-xs text-muted-foreground hover:text-foreground">
+              Termos de Uso
+            </Link>
+            <Link href="/privacidade" className="text-xs text-muted-foreground hover:text-foreground">
+              Política de Privacidade
+            </Link>
+          </div>
         </div>
       </div>
-    </section>
+    </footer>
+  );
+}
+
+function SocialIcon({ href, children, ...props }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-10 h-10 rounded-full bg-muted/30 flex items-center justify-center hover:bg-primary-400 transition-colors"
+      {...props}
+    >
+      {children}
+    </a>
   );
 }

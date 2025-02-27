@@ -12,7 +12,7 @@ export function AboutSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="py-24 relative overflow-hidden bg-gradient-to-b from-black to-primary-950/20" id="about">
+    <section className="py-24 relative overflow-hidden bg-gradient-to-b from-black to-primary-800/20" id="about">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Texto */}
@@ -58,9 +58,9 @@ export function AboutSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <div className="bg-gradient-to-br from-black/60 to-primary-950/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 shadow-xl">
+            <div className="bg-gradient-to-br from-black/60 to-primary-800/40 backdrop-blur-sm rounded-2xl p-8 border border-primary-400/10 shadow-xl">
               <h3 className="text-2xl font-semibold mb-6 flex items-center">
-                <span className="text-4xl mr-2">≠</span>
+                <span className="text-4xl mr-2 text-primary-400">≠</span>
                 <span>Nossos Valores</span>
               </h3>
 
@@ -79,7 +79,7 @@ export function AboutSection() {
               </div>
               
               {/* Elemento gráfico decorativo */}
-              <div className="w-3/4 h-1 bg-gradient-to-r from-primary-500 to-transparent rounded-full mt-8"></div>
+              <div className="w-3/4 h-1 bg-gradient-to-r from-primary-400 to-transparent rounded-full mt-8"></div>
             </div>
           </motion.div>
         </div>
@@ -90,7 +90,7 @@ export function AboutSection() {
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="1" fill="currentColor" className="text-primary-500" />
+              <circle cx="2" cy="2" r="1" fill="currentColor" className="text-primary-400" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#dots)" />

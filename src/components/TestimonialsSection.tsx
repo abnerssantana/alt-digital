@@ -54,7 +54,7 @@ export function TestimonialsSection() {
                 x: index === current ? 0 : (index < current ? -100 : 100)
               }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-black/60 to-primary-950/40 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-primary/10 shadow-xl absolute inset-0"
+              className="bg-gradient-to-br from-black/60 to-primary-800/40 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-primary-400/10 shadow-xl absolute inset-0"
               style={{ display: index === current ? "block" : "none" }}
             >
               <Quote className="text-primary-400 w-16 h-16 mb-6 opacity-30" />
