@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Link from "next/link";
 import { 
@@ -37,11 +37,11 @@ export function Hero() {
   }, []);
 
   // Cálculo para movimento parallax com mouse
-  const calculateParallax = (factor = 0.02) => {
+  const calculateParallax = useMemo(() => (factor = 0.02) => {
     const x = (mousePosition.x - window.innerWidth / 2) * factor;
     const y = (mousePosition.y - window.innerHeight / 2) * factor;
     return { x, y };
-  };
+  }, [mousePosition]);
 
   // Animações dos elementos
   const containerVariants = {
