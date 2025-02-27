@@ -76,13 +76,13 @@ export function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300",
+        "w-7xl fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300 mx-auto",
         scrolled 
           ? "bg-background/95 backdrop-blur-md shadow-md py-3"
           : "bg-transparent"
       )}
     >
-      <div className="container flex justify-between items-center">
+      <div className="flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <LogoAlt />
