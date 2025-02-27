@@ -160,10 +160,9 @@ export function Footer() {
   );
 }
 
-interface SocialIconProps {
+interface SocialIconProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   children: React.ReactNode;
-  [key: string]: any;
 }
 
 function SocialIcon({ href, children, ...props }: SocialIconProps) {
