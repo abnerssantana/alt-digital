@@ -76,7 +76,9 @@ export const metadata = {
   manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
-export default function RootLayout({ children }) {
+import { ReactNode } from "react";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" className="dark">
       <body className={`${fontSans.variable} ${fontSatoshi.variable} font-sans antialiased`}>

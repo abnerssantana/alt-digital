@@ -15,7 +15,7 @@ import {
 import { SiInstagram } from "react-icons/si";
 
 // Map de ícones para os serviços
-const iconMap = {
+const iconMap: { [key: string]: React.ComponentType<{ size: number; className: string }> } = {
   Megaphone: Megaphone,
   Video: Video,
   Palette: Palette,
@@ -94,7 +94,7 @@ export function ServicesSection() {
           animate={isInView ? "visible" : "hidden"}
         >
           {siteConfig.services.map((service, index) => {
-            const IconComponent = iconMap[service.icon];
+            const IconComponent = iconMap[service.icon as keyof typeof iconMap];
             
             return (
               <motion.div

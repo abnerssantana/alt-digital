@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, JSX } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,7 @@ export function AboutSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   // Ícones para os valores
-  const valueIcons = {
+  const valueIcons: { [key: string]: JSX.Element } = {
     "Criatividade": <Sparkles className="w-5 h-5 text-primary-400" />,
     "Parceria Autêntica": <Users className="w-5 h-5 text-primary-400" />,
     "Inovação Constante": <RefreshCw className="w-5 h-5 text-primary-400" />
@@ -172,7 +172,7 @@ export function AboutSection() {
                     >
                       <div className="flex items-start gap-3">
                         <div className="w-10 h-10 rounded-full bg-primary-900/50 flex items-center justify-center mt-1 group-hover:bg-primary-800/70 transition-colors">
-                          {valueIcons[value.title]}
+                          {valueIcons[value.title as keyof typeof valueIcons]}
                         </div>
                         <div>
                           <h4 className="text-lg font-semibold mb-1 text-primary-300 group-hover:text-primary-200 transition-colors">
