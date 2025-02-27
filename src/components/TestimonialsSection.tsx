@@ -84,7 +84,7 @@ export function TestimonialsSection() {
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.5 }}
                     >
-                      "{testimonial.quote}"
+                      {testimonial.quote}
                     </motion.p>
                     
                     <div className="mt-auto flex items-center justify-between">

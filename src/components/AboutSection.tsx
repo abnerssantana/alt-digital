@@ -75,7 +75,7 @@ export function AboutSection() {
               variants={itemVariants}
               className="text-xl mb-8 text-white/90"
             >
-              "{siteConfig.manifesto.archetype.tagline}"
+              {siteConfig.manifesto.archetype.tagline}
             </motion.p>
             
             <motion.div 

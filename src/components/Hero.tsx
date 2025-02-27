@@ -194,40 +194,42 @@ export function Hero() {
             </div>
           </div>
 
-          <motion.div
+            <motion.div
             style={{ y: y1 }}
             variants={itemVariants}
             className="relative hidden lg:block"
-          >
-            <div className="aspect-square relative rounded-2xl overflow-hidden border border-primary-400/20 shadow-xl">
+            >
+            <div className="aspect-[9/16] relative rounded-2xl overflow-hidden border border-primary-400/20 shadow-xl w-96 mx-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-primary-800/50 via-transparent to-secondary-700/50 mix-blend-overlay z-10"></div>
               
               {/* Símbolo ≠ animado flutuando */}
               <motion.div 
-                className="absolute inset-0 flex items-center justify-center z-20"
-                animate={{ y: [0, -20, 0] }}
-                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+              className="absolute inset-0 flex items-center justify-center z-20"
+              animate={{ y: [0, -20, 0] }}
+              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
               >
-                <span className="text-[300px] font-bold text-white/10">≠</span>
+              <span className="text-[300px] font-bold text-white/10">≠</span>
               </motion.div>
               
               {/* Imagem principal */}
               <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
-                className="relative z-0 h-full"
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
+              className="relative z-0 h-full"
               >
-                <img 
-                  src="/api/placeholder/600/600" 
-                  alt="Alt Digital - Agência Criativa" 
-                  className="w-full h-full object-cover"
-                />
+              <video 
+                src="/altdigital.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                className="w-full h-full object-fill"
+              />
               </motion.div>
             </div>
             
             {/* Elementos decorativos */}
             <motion.div 
-              className="absolute -bottom-10 -left-10 p-4 bg-black border border-primary-400/20 rounded-lg shadow-lg z-20"
+              className="absolute bottom-10 -left-10 p-4 bg-black border border-primary-400/20 rounded-lg shadow-lg z-20"
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
             >
