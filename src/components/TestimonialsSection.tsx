@@ -10,7 +10,7 @@ import {
   Sparkles 
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 

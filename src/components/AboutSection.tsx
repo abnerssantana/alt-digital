@@ -7,8 +7,6 @@ import {
   ArrowRight, 
   Sparkles,
   Lightbulb,
-  Users,
-  RefreshCw,
   Target,
   Compass,
   Rocket
