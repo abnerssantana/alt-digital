@@ -18,12 +18,12 @@ export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollY } = useScroll();
   
-  // Transformações baseadas no scroll
+  // Transformations based on scroll
   const y1 = useTransform(scrollY, [0, 500], [0, -150]);
   const y2 = useTransform(scrollY, [0, 500], [0, -50]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
-  // Detectar movimento do mouse para efeito parallax
+  // Detect mouse movement for parallax effect
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
@@ -36,16 +36,21 @@ export function Hero() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // Cálculo para movimento parallax com mouse
+  // Calculate parallax with safe window access
   const calculateParallax = useMemo(() => {
     return (factor: number = 0.02) => {
+      // Check if window is defined (client-side)
+      if (typeof window === 'undefined') {
+        return { x: 0, y: 0 };
+      }
+      
       const x = (mousePosition.x - window.innerWidth / 2) * factor;
       const y = (mousePosition.y - window.innerHeight / 2) * factor;
       return { x, y };
     };
   }, [mousePosition]);
 
-  // Animações dos elementos
+  // Animation configurations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
