@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
+import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Instagram, Linkedin, Youtube, Mail, MapPin, Phone } from "lucide-react";
+
 
 const footerLinks = [
   {
@@ -44,10 +46,12 @@ export function Footer() {
           {/* Coluna do logo e info de contato */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
-              <div className="flex items-center font-bold text-2xl">
-                <span>alt</span>
-                <span className="text-primary-400">≠</span>
-              </div>
+              <Image
+                    src="/logo.png"
+                    alt="Logo"
+                    width={50}
+                    height={50}
+                  />
             </Link>
             <p className="text-muted-foreground max-w-xs mb-6">
               A (ALT)ERNATIVA PARA QUEM PENSA DIFERENTE. Agência digital especializada em soluções criativas e inovadoras.
