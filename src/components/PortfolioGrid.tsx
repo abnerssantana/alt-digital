@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { 
   ArrowRight, 
   Eye, 
@@ -22,7 +21,6 @@ import { Input } from "@/components/ui/input";
 import { 
   Dialog, 
   DialogContent, 
-  DialogClose, 
   DialogTrigger
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
@@ -148,7 +146,6 @@ const PORTFOLIO_PROJECTS: Project[] = [
     tags: ["UI/UX", "Mobile", "Aplicativo"]
   },
 ];
-
 // Componente do projeto individual
 const ProjectCard = ({ project, onClick }: { project: Project; onClick: () => void }) => {
   return (
@@ -307,7 +304,7 @@ export default function PortfolioGrid() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="sticky top-20 z-10 bg-background/80 backdrop-blur-lg border-b border-primary-400/10 py-4 mb-8"
+        className="sticky top-12 z-10 bg-background/80 backdrop-blur-lg border-b border-primary-400/10 py-4 mb-8"
       >
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
