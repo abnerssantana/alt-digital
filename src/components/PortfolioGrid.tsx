@@ -258,7 +258,6 @@ const ProjectDetail = ({ project }: { project: Project }) => {
 export default function PortfolioGrid() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
   // Filtragem de projetos por categoria e pesquisa
@@ -304,7 +303,7 @@ export default function PortfolioGrid() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="sticky top-12 z-10 bg-background/80 backdrop-blur-lg border-b border-primary-400/10 py-4 mb-8"
+        className="bg-background/80 backdrop-blur-lg border-b border-primary-400/10 py-4 mb-8"
       >
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
@@ -367,7 +366,7 @@ export default function PortfolioGrid() {
                     <div>
                       <ProjectCard 
                         project={project} 
-                        onClick={() => setSelectedProject(project)} 
+                        onClick={() => (project)} 
                       />
                     </div>
                   </DialogTrigger>
