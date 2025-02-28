@@ -16,10 +16,10 @@ export function VideoShowcase({ variants }: VideoShowcaseProps) {
   return (
     <motion.div
       variants={variants}
-      className="col-span-12 md:col-span-6 row-span-2"
+      className="col-span-1 md:col-span-6 row-span-4 md:row-span-2"
       whileHover={{ y: -8, transition: { duration: 0.2 } }}
     >
-      <Card className="h-full overflow-hidden border-secondary-600/30 relative group">
+      <Card className="h-full min-h-[400px] md:min-h-[500px] overflow-hidden border-secondary-600/30 relative group">
         <div className="absolute inset-0 bg-black/10 z-10 group-hover:bg-black/20 transition-colors duration-300"></div>
         
         <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">

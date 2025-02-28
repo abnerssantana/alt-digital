@@ -17,7 +17,7 @@ export function BrandingCard({ variants, iconMap }: BrandingCardProps) {
   return (
     <motion.div
       variants={variants}
-      className="col-span-6 md:col-span-4 row-span-1"
+      className="col-span-1 md:col-span-4 row-span-auto md:row-span-1"
       whileHover={{ y: -8, transition: { duration: 0.2 } }}
     >
       <Card className="h-full overflow-hidden border-primary-700/30 bg-gradient-to-br from-primary-800 to-primary-700 relative">
