@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 
+import { Variants } from "framer-motion";
+
 interface AnimatedHeadingProps {
-  itemVariants?: any;
+  itemVariants?: Variants;
 }
 
 const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({ itemVariants }) => {
