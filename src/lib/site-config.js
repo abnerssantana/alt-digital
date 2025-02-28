@@ -81,19 +81,19 @@ export const siteConfig = {
         quote: "A equipe da Alt Digital realmente entendeu nossa marca e entregou um resultado que superou nossas expectativas. Eles não têm medo de propor ideias ousadas que realmente funcionam.",
         author: "Marina Oliveira",
         role: "Diretora de Marketing, TechBrand",
-        avatar: "/avatars/marina.jpg"
+        avatar: "/avatars/avatar2.jpg"
       },
       {
         quote: "Trabalhar com a Alt Digital foi uma experiência transformadora para nossa marca. Eles realmente entregam o que prometem: disrupção com propósito.",
         author: "Carlos Mendes",
         role: "CEO, Inovva",
-        avatar: "/avatars/carlos.jpg"
+        avatar: "/avatars/avatar1.jpeg"
       },
       {
         quote: "Em um mercado saturado de conteúdo igual, a Alt Digital nos ajudou a encontrar nossa voz autêntica e a nos destacar da concorrência.",
         author: "Juliana Torres",
         role: "Gerente de Produtos, EcoEssência",
-        avatar: "/avatars/juliana.jpg"
+        avatar: "/avatars/avatar3.jpg"
       }
     ]
   };

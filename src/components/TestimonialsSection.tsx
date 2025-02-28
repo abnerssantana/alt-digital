@@ -83,14 +83,14 @@ export function TestimonialsSection() {
             <Card className="h-full bg-gradient-to-br from-primary-800/60 to-secondary-800/40 backdrop-blur-sm border-primary-400/10 shadow-xl">
               <CardContent className="p-8 h-full flex flex-col justify-between">
                 <div>
-                  <Quote className="text-primary-400 w-12 h-12 mb-6 opacity-40" />
+                  <Quote className="text-primary-500 w-12 h-12 mb-6 opacity-40" />
                   <motion.p
                     key={activeTestimonial}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
                     transition={{ duration: 0.5 }}
-                    className="text-xl md:text-2xl italic mb-8 text-white/90"
+                    className="text-xl md:text-2xl mb-8 text-white/90 font-light"
                   >
                     {testimonials[activeTestimonial].quote}
                   </motion.p>
