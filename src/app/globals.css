@@ -116,3 +116,17 @@
     @apply absolute rounded-full blur-3xl opacity-30;
   }
 }
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+  }
+  
+  .bento-item {
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    min-height: 15rem;
+  }
