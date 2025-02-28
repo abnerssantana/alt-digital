@@ -1,31 +1,34 @@
 "use client";
 
-import { useRef, JSX } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { 
   ArrowRight, 
   Sparkles,
   Lightbulb,
   Users,
-  RefreshCw
+  RefreshCw,
+  Target,
+  Compass,
+  Rocket
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
-  // Ícones para os valores
-  const valueIcons: { [key: string]: JSX.Element } = {
-    "Criatividade": <Sparkles className="w-5 h-5 text-primary-400" />,
-    "Parceria Autêntica": <Users className="w-5 h-5 text-primary-400" />,
-    "Inovação Constante": <RefreshCw className="w-5 h-5 text-primary-400" />
+  // Mapeamento de ícones mais expressivos
+  const valueIcons = {
+    "Criatividade": <Rocket className="w-6 h-6 text-primary-400" />,
+    "Parceria Autêntica": <Compass className="w-6 h-6 text-primary-400" />,
+    "Inovação Constante": <Target className="w-6 h-6 text-primary-400" />
   };
 
-  // Animation configurations
+  // Configurações de animação
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -39,97 +42,154 @@ export function AboutSection() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut" 
+      } 
+    }
   };
 
- 
   return (
-    <section ref={ref} className="py-24 relative overflow-hidden bg-gradient-to-b from-black to-primary-800/20" id="about">
-      <div className="container mx-auto">
+    <section 
+      ref={ref} 
+      className="relative py-24 overflow-hidden bg-gradient-to-br from-primary-900 via-background to-secondary-900"
+    >
+      {/* Efeitos de fundo decorativos */}
+      <motion.div 
+        className="absolute inset-0 z-0 opacity-10"
+        animate={{ 
+          backgroundPosition: ['0% 0%', '100% 100%'],
+          transition: { 
+            duration: 10, 
+            repeat: Infinity, 
+            repeatType: 'reverse' 
+          }
+        }}
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at top left, rgba(123,172,128,0.1) 0%, transparent 50%),
+            radial-gradient(circle at bottom right, rgba(157,96,59,0.1) 0%, transparent 50%)
+          `,
+          backgroundSize: '200% 200%'
+        }}
+      />
+
+      <div className="container mx-auto relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16"
         >
-          {/* Texto */}
-          <div>
-           <motion.div variants={itemVariants} className="mb-4">
-              <div className="inline-flex items-center px-4 py-1.5 text-sm font-medium border rounded-full animated-border text-primary-400 mb-4">
-                <Sparkles size={14} className="mr-2 text-primary-400" />
-                <span>Nosso DNA</span>
+          {/* Coluna de Texto */}
+          <div className="space-y-8">
+            <motion.div variants={itemVariants}>
+              <div className="inline-flex items-center px-4 py-1.5 text-sm font-medium border rounded-full animated-border text-primary-400">
+                <Sparkles size={14} className="mr-2" />
+                Nosso DNA Disruptivo
               </div>
             </motion.div>
-            
-            <motion.h2 
-              variants={itemVariants}
-              className="text-3xl md:text-4xl font-bold mb-6"
-            >
-              <span className="text-primary-400">Rebelde</span> por natureza
-            </motion.h2>
-            
-            <motion.p 
-              variants={itemVariants}
-              className="text-xl mb-8 text-white/90"
-            >
-              {siteConfig.manifesto.archetype.tagline}
-            </motion.p>
-            
+
+            <motion.div variants={itemVariants}>
+              <h2 className="text-4xl font-bold mb-6">
+                Além do <span className="text-primary-400">Convencional</span>
+              </h2>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Somos mais do que uma agência. Somos um movimento que desafia 
+                o status quo, reimaginando o potencial digital com uma abordagem 
+                verdadeiramente original e transformadora.
+              </p>
+            </motion.div>
+
+            {/* Cartões de Missão e Visão */}
             <motion.div 
               variants={itemVariants}
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
+              className="grid md:grid-cols-2 gap-6"
             >
-              <Card className="bg-background/30 backdrop-blur-sm border-primary-400/10">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-xl font-semibold text-primary-400 flex items-center gap-2">
-                    <Lightbulb className="w-5 h-5" />
-                    Missão
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    {siteConfig.manifesto.mission}
-                  </p>
-                </CardContent>
+              <Card className="bg-background/30 backdrop-blur-sm border-primary-400/10 p-6 space-y-4 hover:border-primary-400 transition-all">
+                <div className="flex items-center space-x-3">
+                  <Lightbulb className="w-6 h-6 text-primary-400" />
+                  <h3 className="text-xl font-semibold text-primary-300">Missão</h3>
+                </div>
+                <p className="text-muted-foreground">
+                  {siteConfig.manifesto.mission}
+                </p>
               </Card>
-              
-              <Card className="bg-background/30 backdrop-blur-sm border-primary-400/10">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-xl font-semibold text-primary-400 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5" />
-                    Visão
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    {siteConfig.manifesto.vision}
-                  </p>
-                </CardContent>
+
+              <Card className="bg-background/30 backdrop-blur-sm border-primary-400/10 p-6 space-y-4 hover:border-primary-400 transition-all">
+                <div className="flex items-center space-x-3">
+                  <Compass className="w-6 h-6 text-primary-400" />
+                  <h3 className="text-xl font-semibold text-primary-300">Visão</h3>
+                </div>
+                <p className="text-muted-foreground">
+                  {siteConfig.manifesto.vision}
+                </p>
               </Card>
             </motion.div>
-            
+
             <motion.div variants={itemVariants}>
               <Button 
-                size="lg" 
                 variant="outline" 
-                className="border-primary-400 text-primary-400 hover:bg-primary-400/10 group" 
+                className="border-primary-400 text-primary-400 hover:bg-primary-400/10 group"
                 asChild
               >
                 <Link href="/sobre" className="flex items-center">
-                  Conheça nossa história
+                  Descubra nossa jornada
                   <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
             </motion.div>
           </div>
-          
-          {/* Valores */}
-          <motion.div
+
+          {/* Coluna de Valores */}
+          <motion.div 
             variants={itemVariants}
             className="relative"
           >
+            <Card className="bg-gradient-to-br from-primary-900/60 to-secondary-900/40 backdrop-blur-sm border-primary-400/10 p-8 space-y-8">
+              <div className="flex items-center space-x-4 mb-6">
+                <span className="text-4xl font-bold text-primary-400">≠</span>
+                <h3 className="text-2xl font-semibold">Nossos Valores</h3>
+              </div>
+
+              {siteConfig.manifesto.values.map((value, index) => (
+                <motion.div
+                  key={value.title}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ 
+                    delay: 0.5 + (index * 0.2), 
+                    duration: 0.5 
+                  }}
+                  className="group"
+                >
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 rounded-full bg-primary-900/50 flex items-center justify-center group-hover:bg-primary-800/70 transition-colors">
+                      {valueIcons[value.title as keyof typeof valueIcons]}
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold mb-2 text-primary-300 group-hover:text-primary-200 transition-colors">
+                        {value.title}
+                      </h4>
+                      <p className="text-muted-foreground text-sm">
+                        {value.description}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {index < siteConfig.manifesto.values.length - 1 && (
+                    <div className="w-full h-px bg-gradient-to-r from-primary-400/20 via-primary-400/10 to-transparent mt-6"></div>
+                  )}
+                </motion.div>
+              ))}
+            </Card>
+
+            {/* Efeitos decorativos */}
             <motion.div
-              className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-primary-400/5 blur-3xl"
+              className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-primary-400/5 blur-3xl"
               animate={{ 
                 scale: [1, 1.2, 1],
                 opacity: [0.3, 0.5, 0.3] 
@@ -140,59 +200,14 @@ export function AboutSection() {
                 repeatType: "reverse" 
               }}
             />
-            
-            <Card className="bg-gradient-to-br from-black/60 to-primary-800/40 backdrop-blur-sm rounded-2xl border-primary-400/10 shadow-xl overflow-hidden">
-              <CardHeader className="pb-2 relative">
-                <motion.div 
-                  className="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-primary-900/50 flex items-center justify-center"
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                >
-                  <span className="text-3xl font-bold text-primary-400">≠</span>
-                </motion.div>
-                
-                <CardTitle className="text-2xl font-semibold flex items-center">
-                  <span className="text-4xl mr-2 text-primary-400">≠</span>
-                  <span>Nossos Valores</span>
-                </CardTitle>
-              </CardHeader>
-              
-              <CardContent>
-                <div className="space-y-8 mt-4">
-                  {siteConfig.manifesto.values.map((value, index) => (
-                    <motion.div
-                      key={value.title}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ delay: 0.5 + (index * 0.2), duration: 0.5 }}
-                      className="group"
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-full bg-primary-900/50 flex items-center justify-center mt-1 group-hover:bg-primary-800/70 transition-colors">
-                          {valueIcons[value.title as keyof typeof valueIcons]}
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-semibold mb-1 text-primary-300 group-hover:text-primary-200 transition-colors">
-                            {value.title}
-                          </h4>
-                          <p className="text-muted-foreground text-sm">{value.description}</p>
-                        </div>
-                      </div>
-                      
-                      {index < siteConfig.manifesto.values.length - 1 && (
-                        <div className="w-full h-px bg-gradient-to-r from-primary-400/20 via-primary-400/10 to-transparent mt-4"></div>
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
           </motion.div>
         </motion.div>
       </div>
-      
-      {/* Padrão de fundo */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-5 z-0 pattern-dots text-primary-400"></div>
+
+      {/* Padrão de fundo sutil */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full pattern-dots text-primary-400"></div>
+      </div>
     </section>
   );
 }
