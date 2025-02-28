@@ -26,7 +26,7 @@ export function AboutSection() {
     "Inovação Constante": <RefreshCw className="w-5 h-5 text-primary-400" />
   };
 
-  // Variantes para animação
+  // Animation configurations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -40,13 +40,10 @@ export function AboutSection() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.7, ease: "easeOut" }
-    }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
+ 
   return (
     <section ref={ref} className="py-24 relative overflow-hidden bg-gradient-to-b from-black to-primary-800/20" id="about">
       <div className="container mx-auto">
@@ -58,10 +55,11 @@ export function AboutSection() {
         >
           {/* Texto */}
           <div>
-            <motion.div variants={itemVariants} className="mb-4">
-              <Badge variant="outline" className="px-4 py-1.5 text-sm font-medium border-secondary-500/50 text-secondary-500 animated-border">
+           <motion.div variants={itemVariants} className="mb-4">
+              <div className="inline-flex items-center px-4 py-1.5 text-sm font-medium border rounded-full animated-border text-primary-400 mb-4">
+                <Sparkles size={14} className="mr-2 text-primary-400" />
                 <span>Nosso DNA</span>
-              </Badge>
+              </div>
             </motion.div>
             
             <motion.h2 
