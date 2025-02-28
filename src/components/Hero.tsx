@@ -39,6 +39,9 @@ export function Hero() {
   // Cálculo para movimento parallax com mouse
   const calculateParallax = useMemo(() => {
     return (factor: number = 0.02) => {
+      if (typeof window === 'undefined') {
+        return { x: 0, y: 0 };
+      }
       const x = (mousePosition.x - window.innerWidth / 2) * factor;
       const y = (mousePosition.y - window.innerHeight / 2) * factor;
       return { x, y };
