@@ -3,8 +3,8 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { 
-  ArrowRight, 
+import {
+  ArrowRight,
   Sparkles,
   Lightbulb,
   Target,
@@ -40,30 +40,30 @@ export function AboutSection() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { 
-        duration: 0.8, 
-        ease: "easeOut" 
-      } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
     }
   };
 
   return (
-    <section 
-      ref={ref} 
+    <section
+      ref={ref}
       className="relative py-24 overflow-hidden bg-gradient-to-br from-primary-900 via-background to-secondary-900"
     >
       {/* Efeitos de fundo decorativos */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 z-0 opacity-10"
-        animate={{ 
+        animate={{
           backgroundPosition: ['0% 0%', '100% 100%'],
-          transition: { 
-            duration: 10, 
-            repeat: Infinity, 
-            repeatType: 'reverse' 
+          transition: {
+            duration: 10,
+            repeat: Infinity,
+            repeatType: 'reverse'
           }
         }}
         style={{
@@ -96,14 +96,14 @@ export function AboutSection() {
                 Além do <span className="text-primary-400">Convencional</span>
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Somos mais do que uma agência. Somos um movimento que desafia 
-                o status quo, reimaginando o potencial digital com uma abordagem 
+                Somos mais do que uma agência. Somos um movimento que desafia
+                o status quo, reimaginando o potencial digital com uma abordagem
                 verdadeiramente original e transformadora.
               </p>
             </motion.div>
 
             {/* Cartões de Missão e Visão */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="grid md:grid-cols-2 gap-6"
             >
@@ -129,8 +129,8 @@ export function AboutSection() {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="border-primary-400 text-primary-400 hover:bg-primary-400/10 group"
                 asChild
               >
@@ -143,7 +143,7 @@ export function AboutSection() {
           </div>
 
           {/* Coluna de Valores */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="relative"
           >
@@ -158,9 +158,9 @@ export function AboutSection() {
                   key={value.title}
                   initial={{ opacity: 0, x: -20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ 
-                    delay: 0.5 + (index * 0.2), 
-                    duration: 0.5 
+                  transition={{
+                    delay: 0.5 + (index * 0.2),
+                    duration: 0.5
                   }}
                   className="group"
                 >
@@ -177,7 +177,7 @@ export function AboutSection() {
                       </p>
                     </div>
                   </div>
-                  
+
                   {index < siteConfig.manifesto.values.length - 1 && (
                     <div className="w-full h-px bg-gradient-to-r from-primary-400/20 via-primary-400/10 to-transparent mt-6"></div>
                   )}
@@ -188,14 +188,14 @@ export function AboutSection() {
             {/* Efeitos decorativos */}
             <motion.div
               className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-primary-400/5 blur-3xl"
-              animate={{ 
+              animate={{
                 scale: [1, 1.2, 1],
-                opacity: [0.3, 0.5, 0.3] 
+                opacity: [0.3, 0.5, 0.3]
               }}
-              transition={{ 
-                duration: 8, 
+              transition={{
+                duration: 8,
                 repeat: Infinity,
-                repeatType: "reverse" 
+                repeatType: "reverse"
               }}
             />
           </motion.div>
