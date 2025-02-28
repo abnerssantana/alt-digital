@@ -167,10 +167,13 @@ export function ServicesSection() {
           animate={isInView ? "visible" : "hidden"}
         >
           <motion.div variants={itemVariants} className="text-center max-w-3xl mx-auto mb-16">
-            <Badge variant="outline" className="px-4 py-1.5 text-sm font-medium text-primary-400 mb-4 border-primary-400/30 animated-border">
-              <Sparkles size={14} className="mr-2" />
-              <span>Serviços Inovadores</span>
-            </Badge>
+          <motion.div variants={itemVariants} className="mb-4">
+              <div className="inline-flex items-center px-4 py-1.5 text-sm font-medium border rounded-full animated-border text-primary-400 mb-4">
+                <Sparkles size={14} className="mr-2 text-primary-400" />
+                <span>Serviços Inovadores
+                </span>
+              </div>
+            </motion.div>
 
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Soluções <span className="text-primary-400">criativas</span> para desafios
@@ -431,6 +434,7 @@ export function ServicesSection() {
                       alt="Design Gráfico" 
                       width={400} 
                       height={600}
+                      quality={100}
                       className="h-full w-full object-cover"
                     />
                   </motion.div>
