@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 // Import dos componentes do Shadcn
 import { 
@@ -79,6 +80,7 @@ const services = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const pathname = usePathname();
 
   // Detectar scroll para mudar aparência da navbar
@@ -99,31 +101,31 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled 
-          ? "bg-background/95 backdrop-blur-md shadow-md py-3"
-          : "bg-transparent py-4"
+          ? "bg-background/95 backdrop-blur-md shadow-md py-2"
+          : "bg-transparent py-3 md:py-4"
       )}
     >
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="px-4 md:px-6 lg:px-8 xl:container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center relative z-10">
           <LogoAlt />
         </Link>
 
         {/* Navegação Desktop */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <ul className="flex space-x-8">
+        <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
+          <ul className="flex space-x-4 lg:space-x-8">
             {navLinks.map((link) => (
               <li key={link.path} className="relative group">
                 {link.path === "/servicos" ? (
                   <div 
                     onMouseEnter={() => setServicesOpen(true)} 
                     onMouseLeave={() => setServicesOpen(false)}
-                    className="relative -mt-1"
+                    className="relative"
                   >
                     <Button 
                       variant="ghost"
                       className={cn(
-                        "text-sm font-medium transition-colors hover:text-primary-400 flex items-center",
+                        "text-sm font-medium transition-colors hover:text-primary-400 flex items-center px-3",
                         pathname.startsWith(link.path)
                           ? "text-primary-400 font-semibold"
                           : "text-muted-foreground"
@@ -143,19 +145,21 @@ export function Navbar() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute left-1/2 transform -translate-x-1/2 top-full mt-3 w-64 bg-card/95 backdrop-blur-sm border border-border rounded-lg p-2 shadow-lg z-50"
+                          className="absolute left-1/2 transform -translate-x-1/2 top-full mt-2 w-64 bg-card/95 backdrop-blur-sm border border-border rounded-lg p-2 shadow-lg z-50"
                         >
                           <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 rotate-45 bg-card/95 border-l border-t border-border"></div>
-                          {services.map(service => (
-                            <Link
-                              key={service.path}
-                              href={service.path}
-                              className="flex items-center gap-3 p-2 text-sm text-muted-foreground hover:bg-accent/50 rounded-md transition-colors"
-                            >
-                              {service.icon}
-                              {service.name}
-                            </Link>
-                          ))}
+                          <div className="max-h-[calc(100vh-200px)] overflow-y-auto py-1">
+                            {services.map(service => (
+                              <Link
+                                key={service.path}
+                                href={service.path}
+                                className="flex items-center gap-3 p-2 text-sm text-muted-foreground hover:bg-accent/50 rounded-md transition-colors"
+                              >
+                                {service.icon}
+                                {service.name}
+                              </Link>
+                            ))}
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -164,7 +168,7 @@ export function Navbar() {
                   <Link
                     href={link.path}
                     className={cn(
-                      "text-sm font-medium transition-colors hover:text-primary-400",
+                      "text-sm font-medium transition-colors hover:text-primary-400 px-3 py-2 inline-block",
                       pathname === link.path
                         ? "text-primary-400 font-semibold"
                         : "text-muted-foreground"
@@ -173,13 +177,31 @@ export function Navbar() {
                     {link.name}
                   </Link>
                 )}
+                
+                {/* Indicador de ativo */}
+                {pathname === link.path && link.path !== "/servicos" && (
+                  <motion.div 
+                    layoutId="activeNav"
+                    className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-primary-400 rounded-full"
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+                
+                {pathname.startsWith("/servicos") && link.path === "/servicos" && (
+                  <motion.div 
+                    layoutId="activeNav"
+                    className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-primary-400 rounded-full"
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
               </li>
             ))}
           </ul>
 
           <Button 
             variant="default" 
-            className="bg-primary hover:bg-primary-600"
+            size="sm"
+            className="bg-primary hover:bg-primary-600 ml-4"
             asChild
           >
             <Link href="/contato">Fale Conosco</Link>
@@ -188,67 +210,69 @@ export function Navbar() {
 
         {/* Menu Mobile */}
         <Sheet>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon">
+          <SheetTrigger asChild className="md:hidden relative z-10">
+            <Button variant="ghost" size="icon" className="text-foreground">
               <Menu size={24} />
               <span className="sr-only">Abrir menu</span>
             </Button>
           </SheetTrigger>
           
-          <SheetContent side="right" className="p-0">
+          <SheetContent side="right" className="w-full max-w-xs p-0">
             <div className="flex flex-col h-full">
-              <div className="p-6 border-b border-border flex justify-between items-center">
+              <div className="p-4 border-b border-border flex justify-between items-center">
                 <LogoAlt />
                 <SheetClose asChild>
-                  <Button variant="ghost" size="icon">
-                    <X size={24} />
+                  <Button variant="ghost" size="icon" className="h-8 w-8">
+                    <X size={20} />
                     <span className="sr-only">Fechar menu</span>
                   </Button>
                 </SheetClose>
               </div>
 
-              <nav className="flex-1 p-6 space-y-6 overflow-y-auto">
+              <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
                 {navLinks.map((link) => (
                   <div key={link.path}>
                     {link.path === "/servicos" ? (
                       <div>
                         <Button 
                           variant="ghost" 
-                          onClick={() => setServicesOpen(!servicesOpen)}
+                          onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
                           className={cn(
-                            "w-full justify-between text-lg font-semibold transition-colors",
+                            "w-full justify-between text-base font-medium transition-colors px-3 py-2",
                             pathname.startsWith(link.path)
-                              ? "text-primary-400"
+                              ? "text-primary-400 font-semibold"
                               : "text-muted-foreground"
                           )}
                         >
                           {link.name}
                           <ChevronDown 
                             size={16} 
-                            className={`transition-transform ${servicesOpen ? 'rotate-180' : ''}`} 
+                            className={`transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180' : ''}`} 
                           />
                         </Button>
 
                         <AnimatePresence>
-                          {servicesOpen && (
+                          {isMobileServicesOpen && (
                             <motion.div 
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
                               transition={{ duration: 0.3 }}
-                              className="space-y-2 mt-2 pl-4 overflow-hidden"
+                              className="overflow-hidden"
                             >
-                              {services.map(service => (
-                                <SheetClose asChild key={service.path}>
-                                  <Link
-                                    href={service.path}
-                                    className="flex items-center gap-3 p-2 text-sm text-muted-foreground hover:bg-accent/50 rounded-md transition-colors"
-                                  >
-                                    {service.icon}
-                                    {service.name}
-                                  </Link>
-                                </SheetClose>
-                              ))}
+                              <div className="space-y-1 mt-1 pl-4">
+                                {services.map(service => (
+                                  <SheetClose asChild key={service.path}>
+                                    <Link
+                                      href={service.path}
+                                      className="flex items-center gap-2 py-2 px-3 text-sm text-muted-foreground hover:bg-accent/50 rounded-md transition-colors"
+                                    >
+                                      {service.icon}
+                                      {service.name}
+                                    </Link>
+                                  </SheetClose>
+                                ))}
+                              </div>
                             </motion.div>
                           )}
                         </AnimatePresence>
@@ -258,9 +282,9 @@ export function Navbar() {
                         <Link
                           href={link.path}
                           className={cn(
-                            "block text-lg font-semibold transition-colors p-2 rounded-md hover:bg-accent/50",
+                            "flex items-center text-base font-medium transition-colors py-2 px-3 rounded-md hover:bg-accent/50",
                             pathname === link.path
-                              ? "text-primary-400 bg-accent/50"
+                              ? "text-primary-400 bg-accent/30"
                               : "text-muted-foreground"
                           )}
                         >
@@ -272,32 +296,11 @@ export function Navbar() {
                 ))}
               </nav>
 
-              <div className="p-6 border-t border-border space-y-4">
+              <div className="p-4 border-t border-border space-y-4">
                 <div className="flex justify-center space-x-4">
-                  <a 
-                    href={siteConfig.links.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-muted hover:bg-primary-400/20 transition-colors"
-                  >
-                    <Instagram size={20} className="text-muted-foreground" />
-                  </a>
-                  <a 
-                    href={siteConfig.links.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-muted hover:bg-primary-400/20 transition-colors"
-                  >
-                    <Linkedin size={20} className="text-muted-foreground" />
-                  </a>
-                  <a 
-                    href={siteConfig.links.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-muted hover:bg-primary-400/20 transition-colors"
-                  >
-                    <Youtube size={20} className="text-muted-foreground" />
-                  </a>
+                  <SocialButton href={siteConfig.links.instagram} icon={<Instagram size={18} />} />
+                  <SocialButton href={siteConfig.links.linkedin} icon={<Linkedin size={18} />} />
+                  <SocialButton href={siteConfig.links.youtube} icon={<Youtube size={18} />} />
                 </div>
 
                 <Button 
@@ -318,16 +321,30 @@ export function Navbar() {
   );
 }
 
-import Image from "next/image";
+function SocialButton({ href, icon }: { href: string, icon: React.ReactNode }) {
+  return (
+    <a 
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2 rounded-full bg-muted/30 hover:bg-primary-400/20 transition-colors flex items-center justify-center"
+    >
+      <span className="text-muted-foreground">{icon}</span>
+    </a>
+  );
+}
 
 // Logo component
 function LogoAlt() {
   return (
-    <Image
-      src="/logo.png"
-      alt="Logo"
-      width={50}
-      height={50}
-    />
+    <div className="flex items-center gap-2">
+      <Image
+        src="/logo.png"
+        alt="Logo Alt Digital"
+        width={40}
+        height={40}
+        className="h-10 w-auto"
+      />
+    </div>
   );
 }

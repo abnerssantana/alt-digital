@@ -4,11 +4,10 @@ import { ServicesSection } from "@/components/ServicesSection";
 import { AboutSection } from "@/components/AboutSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { Footer } from "@/components/Footer";
-import { Container } from "@/components/ui/container";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden">
+    <main className="min-h-screen">
       <Navbar />
       <Hero />
       <ServicesSection />
