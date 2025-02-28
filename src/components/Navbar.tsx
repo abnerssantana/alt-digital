@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
@@ -11,7 +11,8 @@ import { cn } from "@/lib/utils";
 import { 
   Sheet, 
   SheetContent, 
-  SheetTrigger 
+  SheetTrigger,
+  SheetClose 
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
@@ -43,12 +44,36 @@ const navLinks = [
 
 // Serviços para o menu dropdown
 const services = [
-  { icon: <Megaphone size={16} />, name: "Marketing Digital", path: "/servicos/marketing-digital" },
-  { icon: <Video size={16} />, name: "Vídeo & Foto", path: "/servicos/video-foto" },
-  { icon: <Palette size={16} />, name: "Branding", path: "/servicos/branding" },
-  { icon: <SiInstagram size={14} />, name: "Social Media", path: "/servicos/social-media" },
-  { icon: <Paintbrush size={16} />, name: "Design Gráfico", path: "/servicos/design-grafico" },
-  { icon: <Code size={16} />, name: "Web Development", path: "/servicos/web-development" },
+  { 
+    icon: <Megaphone size={16} className="text-primary-400" />, 
+    name: "Marketing Digital", 
+    path: "/servicos/marketing-digital" 
+  },
+  { 
+    icon: <Video size={16} className="text-primary-400" />, 
+    name: "Vídeo & Foto", 
+    path: "/servicos/video-foto" 
+  },
+  { 
+    icon: <Palette size={16} className="text-primary-400" />, 
+    name: "Branding", 
+    path: "/servicos/branding" 
+  },
+  { 
+    icon: <SiInstagram size={14} className="text-primary-400" />, 
+    name: "Social Media", 
+    path: "/servicos/social-media" 
+  },
+  { 
+    icon: <Paintbrush size={16} className="text-primary-400" />, 
+    name: "Design Gráfico", 
+    path: "/servicos/design-grafico" 
+  },
+  { 
+    icon: <Code size={16} className="text-primary-400" />, 
+    name: "Web Development", 
+    path: "/servicos/web-development" 
+  },
 ];
 
 export function Navbar() {
@@ -59,11 +84,7 @@ export function Navbar() {
   // Detectar scroll para mudar aparência da navbar
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -76,13 +97,13 @@ export function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={cn(
-        "w-7xl fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300 mx-auto",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled 
           ? "bg-background/95 backdrop-blur-md shadow-md py-3"
-          : "bg-transparent"
+          : "bg-transparent py-4"
       )}
     >
-      <div className="flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <LogoAlt />
@@ -94,43 +115,50 @@ export function Navbar() {
             {navLinks.map((link) => (
               <li key={link.path} className="relative group">
                 {link.path === "/servicos" ? (
-                  <div>
-                    <button
+                  <div 
+                    onMouseEnter={() => setServicesOpen(true)} 
+                    onMouseLeave={() => setServicesOpen(false)}
+                    className="relative -mt-1"
+                  >
+                    <Button 
+                      variant="ghost"
                       className={cn(
                         "text-sm font-medium transition-colors hover:text-primary-400 flex items-center",
                         pathname.startsWith(link.path)
                           ? "text-primary-400 font-semibold"
                           : "text-muted-foreground"
                       )}
-                      onClick={() => setServicesOpen(!servicesOpen)}
-                      onMouseEnter={() => setServicesOpen(true)}
-                      onMouseLeave={() => setServicesOpen(false)}
                     >
                       {link.name}
-                      <ChevronDown size={14} className="ml-1 transition-transform group-hover:rotate-180" />
-                    </button>
+                      <ChevronDown 
+                        size={14} 
+                        className={`ml-1 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} 
+                      />
+                    </Button>
                     
-                    {/* Dropdown para serviços */}
-                    {servicesOpen && (
-                      <div 
-                        className="absolute left-0 top-full pt-2 w-56"
-                        onMouseEnter={() => setServicesOpen(true)}
-                        onMouseLeave={() => setServicesOpen(false)}
-                      >
-                        <div className="rounded-lg bg-card/95 backdrop-blur-sm border border-border p-2 shadow-lg">
+                    <AnimatePresence>
+                      {servicesOpen && (
+                        <motion.div 
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute left-1/2 transform -translate-x-1/2 top-full mt-3 w-64 bg-card/95 backdrop-blur-sm border border-border rounded-lg p-2 shadow-lg z-50"
+                        >
+                          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 rotate-45 bg-card/95 border-l border-t border-border"></div>
                           {services.map(service => (
                             <Link
                               key={service.path}
                               href={service.path}
-                              className="flex items-center gap-2 p-2 text-sm text-muted-foreground hover:text-primary-400 hover:bg-primary-400/10 rounded-md transition-colors"
+                              className="flex items-center gap-3 p-2 text-sm text-muted-foreground hover:bg-accent/50 rounded-md transition-colors"
                             >
-                              <span className="text-primary-400">{service.icon}</span>
+                              {service.icon}
                               {service.name}
                             </Link>
                           ))}
-                        </div>
-                      </div>
-                    )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ) : (
                   <Link
@@ -149,7 +177,11 @@ export function Navbar() {
             ))}
           </ul>
 
-          <Button className="bg-primary hover:bg-primary-600 text-white" asChild>
+          <Button 
+            variant="default" 
+            className="bg-primary hover:bg-primary-600"
+            asChild
+          >
             <Link href="/contato">Fale Conosco</Link>
           </Button>
         </nav>
@@ -157,83 +189,125 @@ export function Navbar() {
         {/* Menu Mobile */}
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="text-foreground">
+            <Button variant="ghost" size="icon">
               <Menu size={24} />
               <span className="sr-only">Abrir menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="bg-background border-primary-400/20">
+          
+          <SheetContent side="right" className="p-0">
             <div className="flex flex-col h-full">
-              <div className="flex justify-between items-center mb-8">
+              <div className="p-6 border-b border-border flex justify-between items-center">
                 <LogoAlt />
-                <SheetTrigger asChild>
+                <SheetClose asChild>
                   <Button variant="ghost" size="icon">
                     <X size={24} />
                     <span className="sr-only">Fechar menu</span>
                   </Button>
-                </SheetTrigger>
+                </SheetClose>
               </div>
 
-              <nav className="flex-1">
-                <ul className="space-y-6 text-lg">
-                  {navLinks.map((link) => (
-                    <li key={link.path}>
-                      {link.path === "/servicos" ? (
-                        <div>
-                          <button
-                            className={cn(
-                              "flex items-center justify-between w-full transition-colors hover:text-primary-400",
-                              pathname.startsWith(link.path)
-                                ? "text-primary-400 font-semibold"
-                                : "text-muted-foreground"
-                            )}
-                            onClick={() => setServicesOpen(!servicesOpen)}
-                          >
-                            {link.name}
-                            <ChevronDown size={16} className={`transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
-                          </button>
-                          
-                          {servicesOpen && (
-                            <div className="mt-2 ml-4 space-y-2">
-                              {services.map(service => (
-                                <Link
-                                  key={service.path}
-                                  href={service.path}
-                                  className="flex items-center gap-2 py-2 text-sm text-muted-foreground hover:text-primary-400 transition-colors"
-                                >
-                                  <span className="text-primary-400">{service.icon}</span>
-                                  {service.name}
-                                </Link>
-                              ))}
-                            </div>
+              <nav className="flex-1 p-6 space-y-6 overflow-y-auto">
+                {navLinks.map((link) => (
+                  <div key={link.path}>
+                    {link.path === "/servicos" ? (
+                      <div>
+                        <Button 
+                          variant="ghost" 
+                          onClick={() => setServicesOpen(!servicesOpen)}
+                          className={cn(
+                            "w-full justify-between text-lg font-semibold transition-colors",
+                            pathname.startsWith(link.path)
+                              ? "text-primary-400"
+                              : "text-muted-foreground"
                           )}
-                        </div>
-                      ) : (
+                        >
+                          {link.name}
+                          <ChevronDown 
+                            size={16} 
+                            className={`transition-transform ${servicesOpen ? 'rotate-180' : ''}`} 
+                          />
+                        </Button>
+
+                        <AnimatePresence>
+                          {servicesOpen && (
+                            <motion.div 
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="space-y-2 mt-2 pl-4 overflow-hidden"
+                            >
+                              {services.map(service => (
+                                <SheetClose asChild key={service.path}>
+                                  <Link
+                                    href={service.path}
+                                    className="flex items-center gap-3 p-2 text-sm text-muted-foreground hover:bg-accent/50 rounded-md transition-colors"
+                                  >
+                                    {service.icon}
+                                    {service.name}
+                                  </Link>
+                                </SheetClose>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <SheetClose asChild>
                         <Link
                           href={link.path}
                           className={cn(
-                            "block transition-colors hover:text-primary-400",
+                            "block text-lg font-semibold transition-colors p-2 rounded-md hover:bg-accent/50",
                             pathname === link.path
-                              ? "text-primary-400 font-semibold"
+                              ? "text-primary-400 bg-accent/50"
                               : "text-muted-foreground"
                           )}
                         >
                           {link.name}
                         </Link>
-                      )}
-                    </li>
-                  ))}
-                </ul>
+                      </SheetClose>
+                    )}
+                  </div>
+                ))}
               </nav>
 
-              <div className="mt-auto pt-8 border-t border-primary-400/10">
-                <div className="flex space-x-4 mb-6">
-                  <SocialIcon href={siteConfig.links.instagram} icon={<Instagram size={20} />} />
-                  <SocialIcon href={siteConfig.links.linkedin} icon={<Linkedin size={20} />} />
-                  <SocialIcon href={siteConfig.links.youtube} icon={<Youtube size={20} />} />
+              <div className="p-6 border-t border-border space-y-4">
+                <div className="flex justify-center space-x-4">
+                  <a 
+                    href={siteConfig.links.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full bg-muted hover:bg-primary-400/20 transition-colors"
+                  >
+                    <Instagram size={20} className="text-muted-foreground" />
+                  </a>
+                  <a 
+                    href={siteConfig.links.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full bg-muted hover:bg-primary-400/20 transition-colors"
+                  >
+                    <Linkedin size={20} className="text-muted-foreground" />
+                  </a>
+                  <a 
+                    href={siteConfig.links.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full bg-muted hover:bg-primary-400/20 transition-colors"
+                  >
+                    <Youtube size={20} className="text-muted-foreground" />
+                  </a>
                 </div>
-                <Button className="w-full bg-primary hover:bg-primary-600 text-white" asChild>
-                  <Link href="/contato">Fale Conosco</Link>
+
+                <Button 
+                  variant="default" 
+                  className="w-full bg-primary hover:bg-primary-600"
+                  asChild
+                >
+                  <SheetClose asChild>
+                    <Link href="/contato">Fale Conosco</Link>
+                  </SheetClose>
                 </Button>
               </div>
             </div>
@@ -251,25 +325,5 @@ function LogoAlt() {
       <span>alt</span>
       <span className="text-primary-400">≠</span>
     </div>
-  );
-}
-
-// Tipos para o componente SocialIcon
-interface SocialIconProps {
-  href: string;
-  icon: React.ReactNode;
-}
-
-// Social media icon component
-function SocialIcon({ href, icon }: SocialIconProps) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary-400/20 transition-colors"
-    >
-      {icon}
-    </a>
   );
 }
