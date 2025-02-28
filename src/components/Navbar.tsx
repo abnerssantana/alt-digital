@@ -318,12 +318,16 @@ export function Navbar() {
   );
 }
 
+import Image from "next/image";
+
 // Logo component
 function LogoAlt() {
   return (
-    <div className="flex items-center font-bold text-2xl">
-      <span>alt</span>
-      <span className="text-primary-400">≠</span>
-    </div>
+    <Image
+      src="/logo.png"
+      alt="Logo"
+      width={50}
+      height={50}
+    />
   );
 }
