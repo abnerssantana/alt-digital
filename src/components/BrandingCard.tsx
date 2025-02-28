@@ -6,8 +6,10 @@ import { ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site-config";
 
+import { Variants } from "framer-motion";
+
 interface BrandingCardProps {
-  variants?: any;
+  variants?: Variants;
   iconMap: Record<string, React.ElementType>;
 }
 
