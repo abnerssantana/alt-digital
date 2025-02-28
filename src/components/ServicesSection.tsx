@@ -12,7 +12,6 @@ import {
   Paintbrush,
   Code,
   Sparkles,
-  Play,
   ArrowUpRight
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";

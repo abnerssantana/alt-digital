@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 export function AboutSection() {
   const ref = useRef(null);
