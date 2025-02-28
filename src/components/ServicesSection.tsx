@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { VideoShowcase } from "./VideoShowcase";
+import { BrandingCard } from "./BrandingCard";
 
 // Map icons to services
 const iconMap: Record<string, React.ElementType> = {
@@ -261,23 +262,74 @@ export function ServicesSection() {
                 className="col-span-12 md:col-span-6 row-span-2"
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
               >
-                <Card className="h-full overflow-hidden border-primary-700/30 bg-gradient-to-br from-primary-800 to-primary-700">
+                <Card className="h-full overflow-hidden border-secondary-600/30 bg-gradient-to-br from-[#6A5ACD] via-[#7B68EE] to-[#4169E1] text-white relative">
+                  {/* Animated background elements */}
+                  <motion.div
+                    className="absolute inset-0 opacity-20 mix-blend-overlay"
+                    animate={{
+                      backgroundPosition: ['0% 0%', '100% 100%'],
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 10,
+                      repeatType: 'reverse'
+                    }}
+                    style={{
+                      backgroundImage: `
+          radial-gradient(circle at top left, rgba(255,255,255,0.1) 0%, transparent 50%),
+          radial-gradient(circle at bottom right, rgba(0,0,0,0.1) 0%, transparent 50%)
+        `,
+                      backgroundSize: '200% 200%'
+                    }}
+                  />
+
                   <div className="h-full flex flex-col justify-between relative z-10 p-6 md:p-8">
                     <div>
                       <motion.div
-                        className="w-12 h-12 rounded-full bg-primary-400/10 flex items-center justify-center mb-4"
-                        whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
+                        className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-4 backdrop-blur-sm"
+                        whileHover={{
+                          rotate: 360,
+                          scale: 1.1,
+                          transition: { duration: 0.5 }
+                        }}
                       >
-                        {iconMap.Megaphone && <iconMap.Megaphone size={24} className="text-primary-300" />}
+                        {iconMap.Megaphone && (
+                          <iconMap.Megaphone
+                            size={32}
+                            className="text-white/90"
+                          />
+                        )}
                       </motion.div>
-                      <h3 className="text-xl md:text-2xl font-semibold mb-3">{siteConfig.services[0].title}</h3>
-                      <p className="text-base text-foreground/90 mb-4">
+
+                      <motion.h3
+                        className="text-xl md:text-2xl font-bold mb-3"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        {siteConfig.services[0].title}
+                      </motion.h3>
+
+                      <motion.p
+                        className="text-base text-white/90 mb-4"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                      >
                         {siteConfig.services[0].description}
-                      </p>
-                      <p className="text-muted-foreground text-sm">
+                      </motion.p>
+
+                      <motion.p
+                        className="text-white/80 text-sm"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6 }}
+                      >
                         Estratégias omnichannel para fortalecer a presença digital da sua marca.
-                      </p>
+                      </motion.p>
                     </div>
+
                     <motion.div
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
@@ -285,18 +337,29 @@ export function ServicesSection() {
                     >
                       <Link
                         href={`/servicos/${siteConfig.services[0].id}`}
-                        className="inline-flex items-center text-sm text-primary-300 hover:text-primary-200 group"
+                        className="inline-flex items-center text-sm text-white hover:text-white/80 group"
                       >
                         Saiba mais
-                        <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight
+                          size={14}
+                          className="ml-1 group-hover:translate-x-1 transition-transform"
+                        />
                       </Link>
                     </motion.div>
 
-                    {/* Decorative element */}
+                    {/* Floating abstract shapes */}
                     <motion.div
-                      className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-primary-400/10 blur-2xl"
-                      animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-                      transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+                      className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-white/5 blur-2xl"
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 20, 0],
+                        opacity: [0.3, 0.5, 0.3]
+                      }}
+                      transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                        repeatType: "reverse"
+                      }}
                     />
                   </div>
                 </Card>
@@ -305,42 +368,10 @@ export function ServicesSection() {
               {/* Video Showcase */}
               <VideoShowcase variants={itemVariants} />
 
-              {/* Branding */}
-              <motion.div
+              <BrandingCard
                 variants={itemVariants}
-                className="col-span-6 md:col-span-4 row-span-1"
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              >
-                <Card className="h-full overflow-hidden border-zinc-700/30 bg-gradient-to-br from-zinc-900 to-zinc-800">
-                  <div className="h-full flex flex-col justify-between relative z-10 p-6">
-                    <div>
-                      <motion.div
-                        className="w-10 h-10 rounded-full bg-zinc-700/30 flex items-center justify-center mb-4"
-                        whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
-                      >
-                        {iconMap.Palette && <iconMap.Palette size={20} className="text-primary-300" />}
-                      </motion.div>
-                      <h3 className="text-xl font-semibold mb-2">{siteConfig.services[2].title}</h3>
-                      <p className="text-sm text-foreground/90">
-                        {siteConfig.services[2].description}
-                      </p>
-                    </div>
-                    <motion.div
-                      whileHover={{ x: 5 }}
-                      transition={{ duration: 0.2 }}
-                      className="mt-4"
-                    >
-                      <Link
-                        href={`/servicos/${siteConfig.services[2].id}`}
-                        className="inline-flex items-center text-sm text-primary-300 hover:text-primary-200 group"
-                      >
-                        Saiba mais
-                        <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                    </motion.div>
-                  </div>
-                </Card>
-              </motion.div>
+                iconMap={iconMap}
+              />
 
               {/* Social Media */}
               <motion.div
@@ -348,18 +379,18 @@ export function ServicesSection() {
                 className="col-span-6 md:col-span-4 row-span-1"
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
               >
-                <Card className="h-full overflow-hidden border-primary-500/30 bg-gradient-to-br from-primary-600 to-primary-500">
-                  <div className="h-full flex flex-col justify-between relative z-10 p-6">
+                <Card className="h-full overflow-hidden border-pink-500/30 bg-gradient-to-br from-[#C13584] via-[#F56040] to-[#FFDC80]">
+                  <div className="h-full flex flex-col justify-between relative z-10 p-6 text-white">
                     <div>
                       <motion.div
-                        className="w-10 h-10 rounded-full bg-primary-500/10 flex items-center justify-center mb-4"
+                        className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-4"
                         whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
                       >
-                        {iconMap.Instagram && <iconMap.Instagram size={20} className="text-primary-300" />}
+                        {iconMap.Instagram && <iconMap.Instagram size={24} className="text-white" />}
                       </motion.div>
-                      <h3 className="text-xl font-semibold mb-2">{siteConfig.services[3].title}</h3>
-                      <p className="text-sm text-foreground/90">
-                        {siteConfig.services[3].description}
+                      <h3 className="text-xl font-semibold mb-2">Social Media</h3>
+                      <p className="text-sm text-white/90">
+                        Criação de conteúdo envolvente e estratégias de storytelling para conexão autêntica com seu público.
                       </p>
                     </div>
                     <motion.div
@@ -369,7 +400,7 @@ export function ServicesSection() {
                     >
                       <Link
                         href={`/servicos/${siteConfig.services[3].id}`}
-                        className="inline-flex items-center text-sm text-primary-300 hover:text-primary-200 group"
+                        className="inline-flex items-center text-sm text-white hover:text-white/80 group"
                       >
                         Saiba mais
                         <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
