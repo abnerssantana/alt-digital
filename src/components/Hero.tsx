@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Link from "next/link";
+import AnimatedHeading from "@/components/AnimatedHeading";
 import { 
   ArrowRight, 
   Sparkles, 
@@ -125,14 +126,7 @@ export function Hero() {
               </div>
             </motion.div>
 
-            <motion.h1 
-              variants={itemVariants}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
-            >
-              A <span className="text-primary-400">(ALT)</span>ERNATIVA 
-              <br className="hidden md:block" /> PARA QUEM PENSA 
-              <span className="gradient-text"> DIFERENTE</span>
-            </motion.h1>
+            <AnimatedHeading itemVariants={itemVariants} />
             
             <motion.p 
               variants={itemVariants}
