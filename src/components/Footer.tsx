@@ -2,45 +2,12 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Instagram, Linkedin, Youtube, Mail, MapPin, Phone } from "lucide-react";
-
-
-const footerLinks = [
-  {
-    title: "Empresa",
-    links: [
-      { name: "Sobre nós", href: "/sobre" },
-      { name: "Missão e Visão", href: "/sobre#missao-visao" },
-      { name: "Equipe", href: "/sobre#equipe" },
-      { name: "Trabalhe conosco", href: "/carreiras" }
-    ]
-  },
-  {
-    title: "Serviços",
-    links: [
-      { name: "Marketing Digital", href: "/servicos/marketing-digital" },
-      { name: "Vídeo & Foto", href: "/servicos/video-foto" },
-      { name: "Branding", href: "/servicos/branding" },
-      { name: "Social Media", href: "/servicos/social-media" },
-      { name: "Design Gráfico", href: "/servicos/design-grafico" },
-      { name: "Web Development", href: "/servicos/web-development" }
-    ]
-  },
-  {
-    title: "Recursos",
-    links: [
-      { name: "Blog", href: "/blog" },
-      { name: "E-books", href: "/recursos/ebooks" },
-      { name: "Casos de sucesso", href: "/casos" },
-      { name: "FAQ", href: "/faq" }
-    ]
-  }
-];
+import { Instagram, Linkedin, Youtube, Mail, MapPin, Phone } from "lucide-react";
+import { FooterCTA } from "@/components/FooterCTA";
 
 export function Footer() {
   return (
-    <footer className="bg-muted/30 border-t border-muted pt-16 pb-8">
+    <footer className="bg-muted/30 border-t border-muted pt-16 pb-8 px-4">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
           {/* Coluna do logo e info de contato */}
@@ -54,7 +21,7 @@ export function Footer() {
                   />
             </Link>
             <p className="text-muted-foreground max-w-xs mb-6">
-              A (ALT)ERNATIVA PARA QUEM PENSA DIFERENTE. Agência digital especializada em soluções criativas e inovadoras.
+              {siteConfig.footer.tagline}
             </p>
             <div className="space-y-3">
               <div className="flex items-start">
@@ -78,9 +45,9 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Colunas de links */}
-          {footerLinks.map((column) => (
-            <div key={column.title}>
+          {/* Colunas de links - ocultas em telas menores, visíveis em desktop */}
+          {siteConfig.footer.columns.map((column) => (
+            <div key={column.title} className="hidden lg:block">
               <h3 className="font-semibold mb-4">{column.title}</h3>
               <ul className="space-y-3">
                 {column.links.map((link) => (
@@ -99,36 +66,7 @@ export function Footer() {
         </div>
 
         {/* CTA Newsletter */}
-        <div className="bg-primary-900/50 backdrop-blur-sm p-8 rounded-2xl mb-16">
-          <div className="text-center max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold mb-3">Vamos criar algo incrível juntos</h3>
-            <p className="text-muted-foreground mb-6">
-              Entre em contato para discutir seu projeto ou assine nossa newsletter para receber novidades e inspiração.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-primary-400 hover:bg-primary-500 text-white"
-                asChild
-              >
-                <Link href="/contato" className="flex items-center">
-                  Fale Conosco
-                  <ArrowRight size={16} className="ml-2" />
-                </Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-primary-400 text-primary-400 hover:bg-primary-400/10"
-                asChild
-              >
-                <Link href="/newsletter">
-                  Assinar Newsletter
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
+        <FooterCTA />
 
         <Separator className="bg-muted/20 mb-8" />
 
@@ -147,16 +85,19 @@ export function Footer() {
           </div>
           
           <div className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Alt Digital. Todos os direitos reservados.
+            {siteConfig.footer.copyright.replace('{year}', new Date().getFullYear().toString())}
           </div>
           
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/termos" className="text-xs text-muted-foreground hover:text-foreground">
-              Termos de Uso
-            </Link>
-            <Link href="/privacidade" className="text-xs text-muted-foreground hover:text-foreground">
-              Política de Privacidade
-            </Link>
+            {siteConfig.footer.legal.map((item) => (
+              <Link 
+                key={item.href} 
+                href={item.href} 
+                className="text-xs text-muted-foreground hover:text-foreground"
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

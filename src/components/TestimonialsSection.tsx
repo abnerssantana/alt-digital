@@ -7,7 +7,7 @@ import {
   Quote, 
   ArrowLeft, 
   ArrowRight, 
-  Sparkles 
+  MessageCircle
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { Card, CardContent } from "@/components/ui/card";
@@ -48,7 +48,7 @@ export function TestimonialsSection() {
   return (
     <section 
       ref={ref} 
-      className="py-24 relative overflow-hidden bg-primary-900/10"
+      className="py-24 px-4 relative overflow-hidden bg-primary-900/10"
     >
       <div className="container mx-auto">
         <motion.div
@@ -59,16 +59,16 @@ export function TestimonialsSection() {
         >
           <motion.div variants={itemVariants} className="mb-4">
             <div className="inline-flex items-center px-4 py-1.5 text-sm font-medium border rounded-full animated-border text-primary-400 mb-4">
-              <Sparkles size={14} className="mr-2 text-primary-400" />
+              <MessageCircle size={14} className="mr-2 text-primary-400" />
               <span>Histórias de Sucesso</span>
             </div>
           </motion.div>
 
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            O que nossos <span className="text-primary-400">clientes</span> dizem
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            O que nossos <span className="gradient-text">clientes</span> dizem
           </h2>
 
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-base px-8">
             Transformações autênticas e resultados que falam por si. Nossos clientes 
             compartilham suas experiências de trabalhar com a Alt Digital.
           </p>

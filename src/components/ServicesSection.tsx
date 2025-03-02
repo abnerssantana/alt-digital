@@ -160,7 +160,7 @@ export function ServicesSection() {
   return (
     <section
       ref={ref}
-      className="py-24 relative overflow-hidden bg-primary-500/10 bg-gradient-to-b from-background to-background/80"
+      className="py-24 px-4 relative overflow-hidden bg-primary-500/10 bg-gradient-to-b from-background to-background/80"
       id="services"
       onMouseMove={handleMouseMove}
     >
@@ -202,12 +202,12 @@ export function ServicesSection() {
               </div>
             </motion.div>
 
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
               Soluções <span className="text-primary-400">criativas</span> para desafios
               <span className="gradient-text"> digitais</span>
             </h2>
 
-            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+            <p className="text-base text-muted-foreground mb-8 max-w-xl mx-auto px-4">
               Com abordagens disruptivas, ajudamos marcas a se destacarem e se conectarem
               com o que há de mais atual no universo digital.
             </p>
@@ -249,7 +249,7 @@ export function ServicesSection() {
           </motion.div>
 
           {/* Bento Grid */}
-          <div className="px-4 md:px-0">
+          <div className="md:px-0">
             <motion.div
               className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(160px,auto)]"
               variants={containerVariants}
@@ -374,41 +374,41 @@ export function ServicesSection() {
               />
 
               {/* Social Media */}
-<motion.div
-  variants={itemVariants}
-  className="col-span-12 md:col-span-4 row-span-1"
-  whileHover={{ y: -8, transition: { duration: 0.2 } }}
->
-  <Card className="h-full overflow-hidden border-pink-500/30 bg-gradient-to-br from-[#C13584] via-[#F56040] to-[#FFDC80]">
-    <div className="h-full flex flex-col justify-between relative z-10 p-6 text-white">
-      <div>
-        <motion.div
-          className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-4"
-          whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
-        >
-          {iconMap.Instagram && <iconMap.Instagram size={24} className="text-white" />}
-        </motion.div>
-        <h3 className="text-xl font-semibold mb-2">Social Media</h3>
-        <p className="text-sm text-white/90">
-          Criação de conteúdo envolvente e estratégias de storytelling para conexão autêntica com seu público.
-        </p>
-      </div>
-      <motion.div
-        whileHover={{ x: 5 }}
-        transition={{ duration: 0.2 }}
-        className="mt-4"
-      >
-        <Link
-          href={`/servicos/${siteConfig.services[3].id}`}
-          className="inline-flex items-center text-sm text-white hover:text-white/80 group"
-        >
-          Saiba mais
-          <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
-        </Link>
-      </motion.div>
-    </div>
-  </Card>
-</motion.div>
+              <motion.div
+                variants={itemVariants}
+                className="col-span-12 md:col-span-4 row-span-1"
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              >
+                <Card className="h-full overflow-hidden border-pink-500/30 bg-gradient-to-br from-[#C13584] via-[#F56040] to-[#FFDC80]">
+                  <div className="h-full flex flex-col justify-between relative z-10 p-6 text-white">
+                    <div>
+                      <motion.div
+                        className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-4"
+                        whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
+                      >
+                        {iconMap.Instagram && <iconMap.Instagram size={24} className="text-white" />}
+                      </motion.div>
+                      <h3 className="text-xl font-semibold mb-2">Social Media</h3>
+                      <p className="text-sm text-white/90">
+                        Criação de conteúdo envolvente e estratégias de storytelling para conexão autêntica com seu público.
+                      </p>
+                    </div>
+                    <motion.div
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
+                      className="mt-4"
+                    >
+                      <Link
+                        href={`/servicos/${siteConfig.services[3].id}`}
+                        className="inline-flex items-center text-sm text-white hover:text-white/80 group"
+                      >
+                        Saiba mais
+                        <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </motion.div>
+                  </div>
+                </Card>
+              </motion.div>
 
               {/* Design Gráfico - UPDATED */}
               <motion.div
@@ -557,15 +557,15 @@ export function ServicesSection() {
                   </div>
                 </Card>
               </motion.div>
-
-              <motion.div
+            </motion.div>
+            <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.8, duration: 0.5 }}
                 className="text-center mt-16"
               >
                 <Button
-                  className="bg-primary hover:bg-primary-600 text-white group px-8"
+                  className="bg-primary hover:bg-primary-600 text-white group px-8 w-full sm:w-fit"
                   size="lg"
                   asChild
                 >
@@ -575,7 +575,6 @@ export function ServicesSection() {
                   </Link>
                 </Button>
               </motion.div>
-            </motion.div>
           </div>
 
           {/* Background decorative elements */}

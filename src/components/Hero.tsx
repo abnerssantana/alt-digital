@@ -75,7 +75,7 @@ export function Hero() {
   ];
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center pt-28 pb-24 overflow-hidden">
+    <section ref={ref} className="relative min-h-screen flex items-center pt-28 pb-24 overflow-hidden px-4">
       {/* Gradientes de fundo animados */}
       <motion.div 
         style={{ opacity }}

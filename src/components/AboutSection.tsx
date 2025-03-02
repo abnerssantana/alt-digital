@@ -12,7 +12,6 @@ import {
   Rocket
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 export function AboutSection() {
@@ -53,7 +52,7 @@ export function AboutSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-gradient-to-br from-primary-900 via-background to-secondary-900"
+      className="relative py-24 px-4 overflow-hidden bg-gradient-to-br from-primary-900 via-background to-secondary-900"
     >
       {/* Efeitos de fundo decorativos */}
       <motion.div
@@ -92,8 +91,9 @@ export function AboutSection() {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <h2 className="text-4xl font-bold mb-6">
-                Além do <span className="text-primary-400">Convencional</span>
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                Além do
+                <span className="gradient-text"> Convencional</span>
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 Somos mais do que uma agência. Somos um movimento que desafia
@@ -127,19 +127,6 @@ export function AboutSection() {
                 </p>
               </Card>
             </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <Button
-                variant="outline"
-                className="border-primary-400 text-primary-400 hover:bg-primary-400/10 group"
-                asChild
-              >
-                <Link href="/sobre" className="flex items-center">
-                  Descubra nossa jornada
-                  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-            </motion.div>
           </div>
 
           {/* Coluna de Valores */}
@@ -149,7 +136,7 @@ export function AboutSection() {
           >
             <Card className="bg-gradient-to-br from-primary-900/60 to-secondary-900/40 backdrop-blur-sm border-primary-400/10 p-8 space-y-8">
               <div className="flex items-center space-x-4 mb-6">
-                <span className="text-4xl font-bold text-primary-400">≠</span>
+                <span className="text-4xl font-bold text-secondary-500">≠</span>
                 <h3 className="text-2xl font-semibold">Nossos Valores</h3>
               </div>
 
@@ -165,7 +152,7 @@ export function AboutSection() {
                   className="group"
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 rounded-full bg-primary-900/50 flex items-center justify-center group-hover:bg-primary-800/70 transition-colors">
+                    <div className="my-auto w-12 h-12">
                       {valueIcons[value.title as keyof typeof valueIcons]}
                     </div>
                     <div>
@@ -200,6 +187,17 @@ export function AboutSection() {
             />
           </motion.div>
         </motion.div>
+
+        {/* Botão de CTA */}
+        <motion.div variants={itemVariants}>
+              <Link
+                href="/sobre"
+                className="mt-8 inline-flex items-center justify-center rounded-md border border-primary-400 bg-transparent px-4 py-2 text-sm font-medium text-primary-400 hover:bg-primary-400/10 transition-colors h-10 w-full sm:h-11 sm:w-fit"
+              >
+                <span>Descubra nossa jornada</span>
+                <ArrowRight size={16} className="ml-2" />
+              </Link>
+            </motion.div>
       </div>
 
       {/* Padrão de fundo sutil */}
