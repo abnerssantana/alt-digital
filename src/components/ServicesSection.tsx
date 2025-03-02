@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,16 +12,15 @@ import {
   Paintbrush,
   Code,
   PencilRuler,
-  ArrowUpRight,
   QrCode
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { SiInstagram } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import { VideoShowcase } from "./VideoShowcase";
 import { BrandingCard } from "./BrandingCard";
+import { WebDevelopmentCard } from "./WebDevelopmentCard";
 
 // Map icons to services
 const iconMap: Record<string, React.ElementType> = {
@@ -38,79 +37,9 @@ export function ServicesSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollY } = useScroll();
-  const [codeLines, setCodeLines] = useState<string[]>([]);
-  const [currentLine, setCurrentLine] = useState(0);
 
   // Background parallax effect
   const opacity = useTransform(scrollY, [0, 300], [1, 0.5]);
-
-  // Generate code lines for the code animation card
-  useEffect(() => {
-    const lines = [
-      `// Alt Digital - Framework Web`,
-      `function createSite(cliente) {`,
-      `  // Captura a essência da marca`,
-      `  const identidade = construirIdentidade(cliente.valores);`,
-      `  const experiencia = criarExperiencia(cliente.publico);`,
-      `  `,
-      `  // Implementa componentes específicos`,
-      `  const componentes = {`,
-      `    design: { responsive: true, moderno: true },`,
-      `    performance: { score: 98, seo: "otimizado" },`,
-      `    marketing: integrarEstrategias(cliente.objetivos)`,
-      `  };`,
-      `  `,
-      `  return {`,
-      `    ...componentes,`,
-      `    identidade,`,
-      `    experiencia,`,
-      `    lancamento: () => altDigital.deploy(cliente.nome)`,
-      `  };`,
-      `}`,
-      ``,
-      `// Iniciando projeto para o cliente`,
-      `const seuProjeto = createSite({`,
-      `  nome: "Sua Marca",`,
-      `  valores: ["autenticidade", "inovação"],`,
-      `  publico: "conectado",`,
-      `  objetivos: ["conversão", "engajamento"]`,
-      `});`,
-      ``,
-      `// Lançando seu site para o mundo`,
-      `seuProjeto.lancamento(); // Site no ar!`
-    ];
-
-    setCodeLines(lines);
-  }, []);
-
-  // Animate code typing effect
-  useEffect(() => {
-    if (codeLines.length === 0) return;
-
-    // Start from the beginning when we reach the end
-    if (currentLine >= codeLines.length) {
-      const resetTimer = setTimeout(() => {
-        setCurrentLine(0);
-      }, 3000); // Wait 3 seconds before resetting
-      return () => clearTimeout(resetTimer);
-    }
-
-    // Typing effect with variable timing based on line content
-    const timer = setTimeout(() => {
-      setCurrentLine(prev => {
-        const newLine = prev + 1;
-        return newLine;
-      });
-    },
-      // Add different timing based on line content or position
-      codeLines[currentLine]?.includes('//') ? 900 : // Comments display longer
-        codeLines[currentLine]?.trim() === '' ? 600 :    // Empty lines are quicker
-          codeLines[currentLine]?.includes('launch') ? 1500 : // Dramatic pause at launch
-            currentLine >= codeLines.length - 3 ? 1500 :     // Slow down at the end
-              800);                                           // Regular lines
-
-    return () => clearTimeout(timer);
-  }, [currentLine, codeLines]);
 
   // Calculate parallax effect with mouse
   const calculateParallax = useCallback((factor = 0.02, index = 0) => {
@@ -135,8 +64,8 @@ export function ServicesSection() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
+    initial: { opacity: 0, y: 20 },
+    animate: {
       opacity: 1,
       y: 0,
       transition: { duration: 0.8, ease: "easeOut" }
@@ -474,90 +403,8 @@ export function ServicesSection() {
                 </Card>
               </motion.div>
 
-              {/* Code Animation */}
-              <motion.div
-                variants={itemVariants}
-                className="col-span-12 md:col-span-8 row-span-1"
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              >
-                <Card className="h-full overflow-hidden border-secondary-700/30 bg-gradient-to-br from-black to-zinc-900 p-0">
-                  <div className="h-full flex flex-col relative">
-                    <div className="flex items-center bg-zinc-900 px-4 py-2 border-b border-zinc-800">
-                      <div className="flex space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                      </div>
-                      <div className="mx-auto text-xs text-zinc-400">web-development.js</div>
-                    </div>
-
-                    <div className="flex-1 p-6 font-mono text-sm overflow-hidden">
-                      <div className="relative">
-                        {codeLines.map((line, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{
-                              opacity: index <= currentLine ? 1 : 0,
-                              x: index <= currentLine ? 0 : -10
-                            }}
-                            transition={{ duration: 0.5 }}
-                            className={cn(
-                              "whitespace-pre",
-                              line.includes("//") ? "text-zinc-500" : "",
-                              line.includes("function") ? "text-primary-400" : "",
-                              line.includes("const ") ? "text-primary-300" : "",
-                              line.includes('"') || line.includes("'") ? "text-secondary-300" : "",
-                              line.includes("return") ? "text-primary-400" : "",
-                              line.includes("launch") ? "text-primary-300 font-semibold" : ""
-                            )}
-                          >
-                            {line || "\u00A0"}
-                          </motion.div>
-                        ))}
-                        <motion.div
-                          className="absolute bottom-0 left-0 w-2 h-4 bg-primary-400"
-                          animate={{ opacity: [1, 0, 1] }}
-                          transition={{ duration: 1, repeat: Infinity }}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="p-6 border-t border-zinc-800">
-                      <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-                        <div>
-                          <h3 className="text-xl font-semibold">Web Development</h3>
-                          <p className="text-sm text-zinc-400 mb-3 md:mb-0">
-                            Sites responsivos e aplicações web com foco em UX e performance
-                          </p>
-                        </div>
-
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{
-                            opacity: currentLine >= codeLines.length - 3 ? 1 : 0,
-                            scale: currentLine >= codeLines.length - 3 ? 1 : 0.9
-                          }}
-                          transition={{ duration: 0.5 }}
-                          className="bg-primary-800/50 rounded-lg px-4 py-2"
-                        >
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                            <span className="text-sm text-primary-300 font-mono">Site lançado com sucesso!</span>
-                          </div>
-                        </motion.div>
-
-                        <Link
-                          href={`/servicos/${siteConfig.services[5].id}`}
-                          className="flex items-center justify-center w-10 h-10 bg-primary-800/50 rounded-full hover:bg-primary-800 transition-colors mt-3 md:mt-0 ml-auto md:ml-0"
-                        >
-                          <ArrowUpRight size={16} className="text-primary-300" />
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
+              {/* Web Development Card Component */}
+              <WebDevelopmentCard variants={itemVariants} />
             </motion.div>
             <motion.div
                 initial={{ opacity: 0, y: 20 }}

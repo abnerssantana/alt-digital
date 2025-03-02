@@ -96,7 +96,7 @@ export function AboutSection() {
                 Além do
                 <span className="gradient-text"> Convencional</span>
               </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
+              <p className="text-base text-muted-foreground leading-relaxed">
                 Somos mais do que uma agência. Somos um movimento que desafia
                 o status quo, reimaginando o potencial digital com uma abordagem
                 verdadeiramente original e transformadora.

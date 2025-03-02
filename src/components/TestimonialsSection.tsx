@@ -106,7 +106,7 @@ export function TestimonialsSection() {
             O que nossos <span className="gradient-text">clientes</span> dizem
           </h2>
 
-          <p className="text-muted-foreground text-base px-8">
+          <p className="text-muted-foreground text-base">
             Transformações autênticas e resultados que falam por si. Nossos clientes
             compartilham suas experiências de trabalhar com a Alt Digital.
           </p>
