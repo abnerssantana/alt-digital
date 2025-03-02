@@ -3,10 +3,10 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Sparkles, FolderCheck } from "lucide-react";
+import { ArrowRight, Handshake, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/FooterClean";
 import PortfolioGrid from "@/components/PortfolioGrid";
 
 export default function PortfolioPage() {
@@ -75,14 +75,14 @@ export default function PortfolioPage() {
             >
               <motion.div variants={itemVariants} className="mb-4">
                 <div className="inline-flex items-center px-4 py-1.5 text-sm font-medium border rounded-full animated-border text-primary-400 mb-4">
-                  <FolderCheck size={14} className="mr-2 text-primary-400" />
+                  <Trophy size={14} className="mr-2 text-primary-400" />
                   <span>Nossos Projetos</span>
                 </div>
               </motion.div>
 
               <motion.h1 
                 variants={itemVariants} 
-                className="text-4xl md:text-5xl font-bold mb-6"
+                className="text-4xl md:text-6xl font-bold mb-6"
               >
                 Conheça nosso <span className="text-primary-400">portfólio</span> de 
                 <span className="gradient-text"> trabalhos</span>
@@ -90,7 +90,7 @@ export default function PortfolioPage() {
 
               <motion.p 
                 variants={itemVariants}
-                className="text-lg text-muted-foreground mb-8"
+                className="text-sm sm:text-base text-muted-foreground mb-8"
               >
                 Projetos que desafiam o comum e trazem resultados tangíveis para marcas 
                 que buscam se destacar no cenário digital e criar conexões autênticas.
@@ -125,7 +125,7 @@ export default function PortfolioPage() {
                   size="lg"
                   asChild
                 >
-                  <Link href="#contato" className="inline-flex items-center">
+                  <Link href="#contato" className="inline-flex items-center mx-auto w-full sm:w-fit">
                     <span>Vamos criar juntos</span>
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
                   </Link>
@@ -143,7 +143,7 @@ export default function PortfolioPage() {
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-4xl mx-auto text-center">
               <span className="inline-flex items-center px-4 py-1.5 text-sm font-medium border rounded-full animated-border text-primary-400 mb-4">
-                <Sparkles size={14} className="mr-2" />
+                <Handshake size={14} className="mr-2" />
                 <span>Vamos Trabalhar Juntos</span>
               </span>
               
@@ -168,13 +168,12 @@ export default function PortfolioPage() {
                   </Link>
                 </Button>
                 
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-primary-400 text-primary-400 hover:bg-primary-400/10"
-                >
-                  Ver Serviços
-                </Button>
+                <Link 
+                href="/portfolio" 
+                className="inline-flex items-center justify-center rounded-md border border-primary-400 bg-transparent px-4 py-2 text-sm font-medium text-primary-400 hover:bg-primary-400/10 transition-colors h-10 sm:h-11"
+              >
+                <span>Ver serviços</span>
+              </Link>
               </div>
             </div>
           </div>

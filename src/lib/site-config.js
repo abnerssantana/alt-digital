@@ -22,15 +22,7 @@ export const siteConfig = {
       { name: "Política de Privacidade", href: "/privacidade" }
     ],
     columns: [
-      {
-        title: "Empresa",
-        links: [
-          { name: "Sobre nós", href: "/sobre" },
-          { name: "Missão e Visão", href: "/sobre#missao-visao" },
-          { name: "Equipe", href: "/sobre#equipe" },
-          { name: "Trabalhe conosco", href: "/carreiras" }
-        ]
-      },
+
       {
         title: "Serviços",
         links: [
@@ -45,16 +37,24 @@ export const siteConfig = {
       {
         title: "Recursos",
         links: [
-          { name: "Blog", href: "/blog" },
           { name: "E-books", href: "/recursos/ebooks" },
           { name: "Casos de sucesso", href: "/casos" },
           { name: "FAQ", href: "/faq" }
         ]
-      }
+      },
+      {
+        title: "Empresa",
+        links: [
+          { name: "Sobre nós", href: "/sobre" },
+          { name: "Missão e Visão", href: "/sobre#missao-visao" },
+          { name: "Equipe", href: "/sobre#equipe" },
+          { name: "Trabalhe conosco", href: "/carreiras" }
+        ]
+      },
     ],
     cta: {
       title: "Vamos criar algo incrível juntos",
-      description: "Entre em contato para discutir seu projeto ou assine nossa newsletter para receber novidades e inspiração.",
+      description: "Fale conosco e transforme sua ideia em realidade!",
       buttons: [
         {
           text: "Fale Conosco",

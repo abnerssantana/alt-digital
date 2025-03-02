@@ -11,7 +11,8 @@ import {
   Paintbrush, 
   Search,
   SlidersHorizontal,
-  X
+  X,
+  Filter
 } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { Button } from "@/components/ui/button";
@@ -21,16 +22,16 @@ import { Input } from "@/components/ui/input";
 import { 
   Dialog, 
   DialogContent, 
-  DialogTrigger
+  DialogTrigger,
+  DialogTitle
 } from "@/components/ui/dialog";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-
-// Tipos para os projetos e categorias
-type Category = {
-  id: string;
-  name: string;
-  icon: React.ReactNode;
-};
+import { portfolioConfig } from "@/lib/portfolio-config";
 
 type Project = {
   id: string;
@@ -43,110 +44,21 @@ type Project = {
   tags: string[];
 };
 
-// Dados de exemplo para os projetos
-const PORTFOLIO_CATEGORIES: Category[] = [
-  { id: "all", name: "Todos", icon: <SlidersHorizontal size={16} /> },
-  { id: "marketing-digital", name: "Marketing Digital", icon: <Megaphone size={16} /> },
-  { id: "video-foto", name: "Vídeo & Foto", icon: <Video size={16} /> },
-  { id: "branding", name: "Branding", icon: <Palette size={16} /> },
-  { id: "social-media", name: "Social Media", icon: <SiInstagram size={14} /> },
-  { id: "design-grafico", name: "Design Gráfico", icon: <Paintbrush size={16} /> },
-  { id: "web-development", name: "Web Development", icon: <Code size={16} /> },
-];
+// Icon mapping function
+const getIconComponent = (iconName: string, size = 16) => {
+  switch (iconName) {
+    case "SlidersHorizontal": return <SlidersHorizontal size={size} />;
+    case "Megaphone": return <Megaphone size={size} />;
+    case "Video": return <Video size={size} />;
+    case "Palette": return <Palette size={size} />;
+    case "Instagram": return <SiInstagram size={size - 2} />;
+    case "Paintbrush": return <Paintbrush size={size} />;
+    case "Code": return <Code size={size} />;
+    default: return null;
+  }
+};
 
-const PORTFOLIO_PROJECTS: Project[] = [
-  {
-    id: "brand-revolution",
-    title: "Brand Revolution",
-    category: "branding",
-    description: "Redesign completo da identidade visual para uma startup de tecnologia em crescimento, incluindo novo logo, sistema de cores e brand guidelines.",
-    thumbnail: "/portfolio/branding-1.jpg",
-    client: "TechStartup",
-    year: 2024,
-    tags: ["Identidade Visual", "Logo", "Diretrizes de Marca"]
-  },
-  {
-    id: "eco-essence",
-    title: "Eco Essence",
-    category: "design-grafico",
-    description: "Sistema de embalagens sustentáveis para linha de produtos naturais, utilizando materiais recicláveis e design minimalista.",
-    thumbnail: "/portfolio/design-1.jpg",
-    client: "Natural Care",
-    year: 2023,
-    tags: ["Embalagem", "Sustentabilidade", "Design de Produto"]
-  },
-  {
-    id: "digital-presence",
-    title: "Digital Presence",
-    category: "web-development",
-    description: "Desenvolvimento de plataforma e-commerce responsiva com integração a sistemas de pagamento e gestão de estoque.",
-    thumbnail: "/portfolio/web-1.jpg",
-    client: "Fashion Store",
-    year: 2024,
-    tags: ["E-commerce", "UX/UI", "Desenvolvimento Web"]
-  },
-  {
-    id: "urban-campaign",
-    title: "Urban Campaign",
-    category: "marketing-digital",
-    description: "Estratégia de marketing integrada para lançamento de produto urbano, incluindo campanhas digitais, mídia paga e análise de resultados.",
-    thumbnail: "/portfolio/marketing-1.jpg",
-    client: "Urban Lifestyle",
-    year: 2023,
-    tags: ["Estratégia Digital", "Mídia Paga", "Lançamento"]
-  },
-  {
-    id: "vivid-stories",
-    title: "Vivid Stories",
-    category: "video-foto",
-    description: "Série de vídeos institucionais e ensaio fotográfico para apresentação da equipe e ambiente de trabalho da empresa.",
-    thumbnail: "/portfolio/video-1.jpg",
-    client: "Corporate Solutions",
-    year: 2024,
-    tags: ["Vídeo Institucional", "Fotografia", "Storytelling"]
-  },
-  {
-    id: "social-impact",
-    title: "Social Impact",
-    category: "social-media",
-    description: "Gestão completa de redes sociais incluindo criação de conteúdo, estratégia de engajamento e análise de métricas.",
-    thumbnail: "/portfolio/social-1.jpg",
-    client: "Impact NGO",
-    year: 2023,
-    tags: ["Instagram", "Conteúdo", "Engajamento"]
-  },
-  {
-    id: "magazine-layout",
-    title: "Magazine Layout",
-    category: "design-grafico",
-    description: "Design editorial para revista trimestral, incluindo layout, tipografia e tratamento de imagens.",
-    thumbnail: "/portfolio/design-2.jpg",
-    client: "Culture Magazine",
-    year: 2024,
-    tags: ["Editorial", "Tipografia", "Layout"]
-  },
-  {
-    id: "product-showcase",
-    title: "Product Showcase",
-    category: "video-foto",
-    description: "Ensaio fotográfico profissional para catálogo de produtos, com direção de arte e pós-produção avançada.",
-    thumbnail: "/portfolio/video-2.jpg",
-    client: "Premium Products",
-    year: 2023,
-    tags: ["Fotografia de Produto", "Direção de Arte", "Catálogo"]
-  },
-  {
-    id: "app-interface",
-    title: "App Interface",
-    category: "web-development",
-    description: "Design e desenvolvimento de interface para aplicativo mobile com foco em experiência do usuário e acessibilidade.",
-    thumbnail: "/portfolio/web-2.jpg",
-    client: "Health Tech",
-    year: 2024,
-    tags: ["UI/UX", "Mobile", "Aplicativo"]
-  },
-];
-// Componente do projeto individual
+// Individual project card component
 const ProjectCard = ({ project, onClick }: { project: Project; onClick: () => void }) => {
   return (
     <motion.div
@@ -177,7 +89,7 @@ const ProjectCard = ({ project, onClick }: { project: Project; onClick: () => vo
             </motion.div>
           </div>
           <Badge className="absolute top-3 right-3 bg-primary-400 text-white text-xs">
-            {PORTFOLIO_CATEGORIES.find(cat => cat.id === project.category)?.name}
+            {portfolioConfig.categories.find(cat => cat.id === project.category)?.name}
           </Badge>
         </div>
         <CardContent className="p-4">
@@ -201,7 +113,7 @@ const ProjectCard = ({ project, onClick }: { project: Project; onClick: () => vo
   );
 };
 
-// Componente de detalhe do projeto
+// Project detail component
 const ProjectDetail = ({ project }: { project: Project }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -219,7 +131,7 @@ const ProjectDetail = ({ project }: { project: Project }) => {
       <div className="md:col-span-5 flex flex-col">
         <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
         <Badge className="w-fit bg-primary-400 text-white mb-4">
-          {PORTFOLIO_CATEGORIES.find(cat => cat.id === project.category)?.name}
+          {portfolioConfig.categories.find(cat => cat.id === project.category)?.name}
         </Badge>
         
         <p className="text-muted-foreground mb-6">{project.description}</p>
@@ -246,7 +158,7 @@ const ProjectDetail = ({ project }: { project: Project }) => {
         </div>
         
         <Button className="w-full md:w-auto mt-auto bg-primary hover:bg-primary-600">
-          Ver caso completo
+          {portfolioConfig.ui.viewFullCaseText}
           <ArrowRight size={16} className="ml-2" />
         </Button>
       </div>
@@ -254,14 +166,49 @@ const ProjectDetail = ({ project }: { project: Project }) => {
   );
 };
 
-// Componente principal de portfólio
+// Filtros laterais para telas menores
+const FilterSidebar = ({ 
+  selectedCategory, 
+  setSelectedCategory 
+}: { 
+  selectedCategory: string; 
+  setSelectedCategory: (category: string) => void 
+}) => {
+  return (
+    <div className="p-6 flex flex-col gap-4">
+      <DialogTitle className="text-lg font-medium mb-2">Filtrar por Categoria</DialogTitle>
+      <div className="flex flex-col gap-2">
+        {portfolioConfig.categories.map((category) => (
+          <Button
+            key={category.id}
+            variant={selectedCategory === category.id ? "default" : "outline"}
+            size="sm"
+            className={cn(
+              "justify-start text-sm h-10 w-full",
+              selectedCategory === category.id 
+                ? "bg-primary hover:bg-primary-600" 
+                : "border-primary-400/20 text-muted-foreground hover:border-primary-400 hover:text-primary-400"
+            )}
+            onClick={() => setSelectedCategory(category.id)}
+          >
+            <span className="mr-2">{getIconComponent(category.icon, 18)}</span>
+            {category.name}
+          </Button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Main portfolio component
 export default function PortfolioGrid() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const searchRef = useRef<HTMLInputElement>(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // Filtragem de projetos por categoria e pesquisa
-  const filteredProjects = PORTFOLIO_PROJECTS.filter((project) => {
+  // Filtering projects by category and search
+  const filteredProjects = portfolioConfig.projects.filter((project) => {
     const matchesCategory = selectedCategory === "all" || project.category === selectedCategory;
     const matchesSearch = 
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -272,7 +219,7 @@ export default function PortfolioGrid() {
     return matchesCategory && matchesSearch;
   });
 
-  // Limpar pesquisa
+  // Clear search
   const clearSearch = () => {
     setSearchQuery("");
     if (searchRef.current) {
@@ -280,7 +227,7 @@ export default function PortfolioGrid() {
     }
   };
 
-  // Animações para os elementos da página
+  // Animations for page elements
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -298,42 +245,20 @@ export default function PortfolioGrid() {
 
   return (
     <div className="pb-20">
-      {/* Barra de filtros */}
+      {/* Filter bar responsiva */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="bg-background/80 backdrop-blur-lg border-b border-primary-400/10 py-4 mb-8"
       >
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <motion.div 
-              variants={itemVariants} 
-              className="flex flex-wrap gap-2 justify-center md:justify-start"
-            >
-              {PORTFOLIO_CATEGORIES.map((category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? "default" : "outline"}
-                  size="sm"
-                  className={cn(
-                    "text-xs h-9",
-                    selectedCategory === category.id 
-                      ? "bg-primary hover:bg-primary-600" 
-                      : "border-primary-400/20 text-muted-foreground hover:border-primary-400 hover:text-primary-400"
-                  )}
-                  onClick={() => setSelectedCategory(category.id)}
-                >
-                  <span className="mr-1.5">{category.icon}</span>
-                  {category.name}
-                </Button>
-              ))}
-            </motion.div>
-            
-            <motion.div variants={itemVariants} className="relative w-full md:w-64">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
+            {/* Search for all screen sizes */}
+            <motion.div variants={itemVariants} className="relative w-full sm:w-64 order-1 sm:order-2">
               <Input
                 ref={searchRef}
-                placeholder="Buscar projetos..."
+                placeholder={portfolioConfig.ui.searchPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-9 border-primary-400/20 focus:border-primary-400"
@@ -348,16 +273,69 @@ export default function PortfolioGrid() {
                 </button>
               )}
             </motion.div>
+            
+            {/* Filter Button Mobile */}
+            <motion.div variants={itemVariants} className="sm:hidden w-full order-2 flex items-center justify-between mt-2">
+              <div className="text-sm text-muted-foreground">
+                {selectedCategory !== "all" ? 
+                  `Filtrando por: ${portfolioConfig.categories.find(cat => cat.id === selectedCategory)?.name}` : 
+                  "Todos os projetos"
+                }
+              </div>
+              
+              <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="sm" className="border-primary-400/20">
+                    <Filter size={16} className="mr-2" />
+                    Filtros
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-full sm:w-80 p-0">
+                  <FilterSidebar 
+                    selectedCategory={selectedCategory} 
+                    setSelectedCategory={(cat) => {
+                      setSelectedCategory(cat);
+                      setIsFilterOpen(false);
+                    }} 
+                  />
+                </SheetContent>
+              </Sheet>
+            </motion.div>
+            
+            {/* Desktop Filters */}
+            <motion.div 
+              variants={itemVariants} 
+              className="hidden sm:flex flex-wrap gap-2 order-1 overflow-x-auto"
+              aria-label={portfolioConfig.ui.filters.label}
+            >
+              {portfolioConfig.categories.map((category) => (
+                <Button
+                  key={category.id}
+                  variant={selectedCategory === category.id ? "default" : "outline"}
+                  size="sm"
+                  className={cn(
+                    "text-xs h-9 whitespace-nowrap",
+                    selectedCategory === category.id 
+                      ? "bg-primary hover:bg-primary-600" 
+                      : "border-primary-400/20 text-muted-foreground hover:border-primary-400 hover:text-primary-400"
+                  )}
+                  onClick={() => setSelectedCategory(category.id)}
+                >
+                  <span className="mr-1.5">{getIconComponent(category.icon)}</span>
+                  {category.name}
+                </Button>
+              ))}
+            </motion.div>
           </div>
         </div>
       </motion.div>
 
-      {/* Grid de projetos */}
-      <div className="container mx-auto px-4 md:px-6">
+      {/* Projects grid */}
+      <div className="container mx-auto px-4">
         {filteredProjects.length > 0 ? (
           <motion.div 
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             <AnimatePresence>
               {filteredProjects.map((project) => (
@@ -371,7 +349,7 @@ export default function PortfolioGrid() {
                     </div>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-4xl p-0 overflow-hidden">
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                       <ProjectDetail project={project} />
                     </div>
                   </DialogContent>
@@ -386,9 +364,9 @@ export default function PortfolioGrid() {
             className="flex flex-col items-center justify-center py-16 text-center"
           >
             <Search size={48} className="text-muted-foreground mb-4 opacity-30" />
-            <h3 className="text-xl font-semibold mb-2">Nenhum projeto encontrado</h3>
+            <h3 className="text-xl font-semibold mb-2">{portfolioConfig.ui.emptyState.title}</h3>
             <p className="text-muted-foreground mb-4">
-              Não encontramos projetos que correspondam aos seus critérios de busca.
+              {portfolioConfig.ui.emptyState.description}
             </p>
             <Button 
               variant="outline" 
@@ -398,7 +376,7 @@ export default function PortfolioGrid() {
               }}
               className="border-primary-400/30 text-primary-400 hover:bg-primary-400/10"
             >
-              Limpar filtros
+              {portfolioConfig.ui.emptyState.buttonText}
             </Button>
           </motion.div>
         )}

@@ -85,7 +85,7 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({ itemVariants }) => {
   return (
     <motion.h1 
       variants={itemVariants}
-      className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 relative"
+      className="text-4xl md:text-6xl lg:text-5xl font-bold leading-tight mb-6 relative"
     >
       <div className="flex flex-col">
         <div className="flex items-center">
@@ -157,7 +157,7 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({ itemVariants }) => {
             repeatType: "mirror"
           }}
         >
-          <span className="gradient-text text-5xl md:text-6xl lg:text-7xl font-bold">
+          <span className="gradient-text text-3xl md:text-5xl lg:text-4xl font-bold">
             A (ALT)ERNATIVA
             <br className="hidden md:block" /> PARA QUEM PENSA 
             <span> DIFERENTE</span>

@@ -3,7 +3,6 @@ import { siteConfig } from "@/lib/site-config";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Instagram, Linkedin, Youtube, Mail, MapPin, Phone } from "lucide-react";
-import { FooterCTA } from "@/components/FooterCTA";
 
 export function Footer() {
   return (
@@ -62,10 +61,7 @@ export function Footer() {
           ))}
         </div>
 
-        {/* CTA Newsletter */}
-        <FooterCTA />
-
-        <Separator className="bg-muted/20 mb-8" />
+        <Separator className="bg-muted/80 mb-8" />
 
         {/* Footer bottom */}
         <div className="flex flex-col md:flex-row justify-between items-center">

@@ -11,8 +11,9 @@ import {
   Palette,
   Paintbrush,
   Code,
-  Sparkles,
-  ArrowUpRight
+  PencilRuler,
+  ArrowUpRight,
+  QrCode
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { SiInstagram } from "react-icons/si";
@@ -152,7 +153,7 @@ export function ServicesSection() {
 
   // Badges that float in the page
   const floatingBadges = [
-    { icon: <Sparkles size={14} />, text: "Inovação digital", delay: 0.2 },
+    { icon: <QrCode size={14} />, text: "Inovação digital", delay: 0.2 },
     { icon: <Palette size={14} />, text: "Design criativo", delay: 0.8 },
     { icon: <Code size={14} />, text: "Desenvolvimento Web", delay: 1.5 }
   ];
@@ -196,7 +197,7 @@ export function ServicesSection() {
           <motion.div variants={itemVariants} className="text-center max-w-3xl mx-auto mb-16">
             <motion.div variants={itemVariants} className="mb-4">
               <div className="inline-flex items-center px-4 py-1.5 text-sm font-medium border rounded-full animated-border text-primary-400 mb-4">
-                <Sparkles size={14} className="mr-2 text-primary-400" />
+                <PencilRuler size={14} className="mr-2 text-primary-400" />
                 <span>Serviços Inovadores
                 </span>
               </div>

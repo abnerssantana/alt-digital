@@ -10,7 +10,8 @@ import {
   MousePointer, 
   ArrowDown,
   MessageSquare,
-  Zap
+  Zap,
+  BadgePlus
 } from "lucide-react";
 
 export function Hero() {
@@ -70,7 +71,7 @@ export function Hero() {
 
   const floatingBadges = [
     { icon: <MessageSquare size={14} />, text: "Estratégia criativa", delay: 0 },
-    { icon: <Sparkles size={14} />, text: "Inovação disruptiva", delay: 0.8 },
+    { icon: <BadgePlus size={14} />, text: "Inovação disruptiva", delay: 0.8 },
     { icon: <Zap size={14} />, text: "Soluções digitais", delay: 1.6 }
   ];
 

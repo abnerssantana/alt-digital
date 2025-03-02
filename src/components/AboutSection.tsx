@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import {
   ArrowRight,
-  Sparkles,
+  Dna,
   Lightbulb,
   Target,
   Compass,
@@ -85,7 +85,7 @@ export function AboutSection() {
           <div className="space-y-8">
             <motion.div variants={itemVariants}>
               <div className="inline-flex items-center px-4 py-1.5 text-sm font-medium border rounded-full animated-border text-primary-400">
-                <Sparkles size={14} className="mr-2" />
+                <Dna size={14} className="mr-2" />
                 Nosso DNA Disruptivo
               </div>
             </motion.div>
