@@ -162,7 +162,7 @@ export function ServicesSection() {
     <section
       ref={ref}
       className="py-24 px-4 relative overflow-hidden bg-primary-500/10 bg-gradient-to-b from-background to-background/80"
-      id="services"
+      id="servicos"
       onMouseMove={handleMouseMove}
     >
       {/* Background gradients */}

@@ -25,9 +25,9 @@ import {
 // Links de navegação
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "Serviços", path: "/servicos" },
   { name: "Portfólio", path: "/portfolio" },
-  { name: "Sobre", path: "/sobre" },
+  { name: "Serviços", path: "#servicos" },
+  { name: "Sobre", path: "#sobre" },
 ];
 
 export function Navbar() {

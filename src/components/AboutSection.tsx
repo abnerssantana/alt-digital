@@ -53,6 +53,7 @@ export function AboutSection() {
     <section
       ref={ref}
       className="relative py-24 px-4 overflow-hidden bg-gradient-to-br from-primary-900 via-background to-secondary-900"
+      id="sobre"
     >
       {/* Efeitos de fundo decorativos */}
       <motion.div

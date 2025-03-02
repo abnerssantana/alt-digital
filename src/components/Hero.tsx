@@ -70,13 +70,13 @@ export function Hero() {
   };
 
   const floatingBadges = [
-    { icon: <MessageSquare size={14} />, text: "Estratégia criativa", delay: 0 },
+    { icon: <MessageSquare size={1} />, text: "Estratégia criativa", delay: 0 },
     { icon: <BadgePlus size={14} />, text: "Inovação disruptiva", delay: 0.8 },
     { icon: <Zap size={14} />, text: "Soluções digitais", delay: 1.6 }
   ];
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center pt-24 pb-24 overflow-hidden px-4">
+    <section ref={ref} className="relative min-h-screen flex items-center pt-10 pb-24 overflow-hidden px-4">
       {/* Gradientes de fundo animados */}
       <motion.div 
         style={{ opacity }}
@@ -199,19 +199,10 @@ export function Hero() {
             variants={itemVariants}
             className="relative hidden lg:block"
             >
-            <div className="aspect-[9/16] relative rounded-2xl overflow-hidden border border-primary-400/20 shadow-xl w-96 mx-auto">
+            <div className="aspect-[9/16] relative rounded-2xl overflow-hidden shadow-xl w-[400px] mx-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-primary-800/50 via-transparent to-secondary-700/50 mix-blend-overlay z-10"></div>
               
-              {/* Símbolo ≠ animado flutuando */}
-              <motion.div 
-              className="absolute inset-0 flex items-center justify-center z-20"
-              animate={{ y: [0, -20, 0] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-              >
-              <span className="text-[300px] font-bold text-white/10">≠</span>
-              </motion.div>
-              
-              {/* Imagem principal */}
+              {/* Vídeo principal */}
               <motion.div
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
@@ -229,12 +220,12 @@ export function Hero() {
             
             {/* Elementos decorativos */}
             <motion.div 
-              className="absolute bottom-10 -left-10 p-4 bg-black border border-primary-400/20 rounded-lg shadow-lg z-20"
+              className="absolute bottom-50 left-12 p-4 bg-black/50 border border-primary-400/20 rounded-lg shadow-lg z-20"
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
             >
               <motion.span 
-                className="text-xl font-bold text-primary-400"
+                className="text-2xl font-bold tracking-wide gradient-text"
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ repeat: Infinity, duration: 3 }}
               >
@@ -243,7 +234,7 @@ export function Hero() {
             </motion.div>
             
             <motion.div 
-              className="absolute -top-6 -right-6 p-6 bg-black border border-secondary-400/20 rounded-full shadow-lg z-20"
+              className="absolute -top-6 -right-6 shadow-lg z-20"
               animate={{ 
                 y: [0, -10, 0],
                 rotate: [0, 5, 0, -5, 0]
@@ -253,7 +244,7 @@ export function Hero() {
                 rotate: { repeat: Infinity, duration: 10, ease: "easeInOut" }
               }}
             >
-              <span className="text-4xl font-bold text-secondary-400">≠</span>
+              <span className="text-9xl font-bold gradient-text">≠</span>
             </motion.div>
           </motion.div>
         </motion.div>
